@@ -27,8 +27,7 @@ void init() {
 
 void insert(int a, int x) {
     e[idx] = x;
-    l[idx] = a;
-    r[idx] = r[a];
+    l[idx] = a, r[idx] = r[a];
     l[r[a]] = idx, r[a] = idx++;
 }
 
