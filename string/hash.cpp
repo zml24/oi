@@ -1,5 +1,7 @@
 typedef unsigned long long ULL;
+
 const int P = 131;
+
 ULL h[N], p[N];
 
 void init() {
