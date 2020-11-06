@@ -1,6 +1,5 @@
 bool topsort() {
     int hh = 0, tt = -1;
-
     for (int i = 1; i <= n; i++)
         if (!d[i]) q[++tt] = i;
 

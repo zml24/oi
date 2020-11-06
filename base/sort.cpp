@@ -1,5 +1,5 @@
 void quick_sort(int q[], int l, int r) {
-    if (i == j) return;
+    if (l == r) return;
     int x = q[l + r >> 1], i = l - 1, j = r + 1;
     while (i < j) {
         do i++; while (q[i] < x);
@@ -11,7 +11,7 @@ void quick_sort(int q[], int l, int r) {
 }
 
 void merge_sort(int q[], int l, int r) {
-    if (i == j) return ;
+    if (l == r) return;
     int mid = l + r >> 1;
     merge_sort(q, l, mid), merge_sort(q, mid + 1, r);
 
