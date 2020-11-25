@@ -40,7 +40,7 @@ bool empty() {
     return hh == tt;
 }
 
-// monotone queue (deque)
+// minimum queue (deque)
 int hh = 0, tt = -1;
 for (int i = 0; i < n; i++) {
     while (hh <= tt && check_out(q[hh])) hh++;

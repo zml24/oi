@@ -16,7 +16,7 @@ bool empty() {
     return tt;
 }
 
-# monotone stack
+# minimum stack
 int tt = 0;
 for (int i = 1; i <= n; i++) {
     while (tt && check(stk[tt], i)) tt--;

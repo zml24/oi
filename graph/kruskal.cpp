@@ -1,6 +1,8 @@
 int p[N];
 
-bool cmp(Edge x, Edge y) {return x.w < y.w;}
+bool cmp(Edge x, Edge y) {
+    return x.w < y.w;
+}
 
 int kruskal() {
     sort(edges, edges + m, cmp);
