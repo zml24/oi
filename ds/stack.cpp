@@ -13,7 +13,7 @@ int top() {
     return stk[tt];
 }
 bool empty() {
-    return tt;
+    return !tt;
 }
 
 # minimum stack

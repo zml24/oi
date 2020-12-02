@@ -20,7 +20,7 @@ int dijkstra() {
 int dijkstra() {
     memset(dist, 0x3f, sizeof dist);
     dist[1] = 0;
-    priority_queue<PII< vector<PII>, greater<PII>> heap;
+    priority_queue<PII, vector<PII>, greater<PII>> heap;
     heap.push({0, 1});
 
     while (heap.size()) {

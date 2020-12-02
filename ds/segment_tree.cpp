@@ -1,19 +1,27 @@
 struct Node {
     int l, int r;
-    int v;
+    int sum, add;
 }tr[N << 2];
 
 void pushup(Node &u, Node &l, Node &r) {
-    // update tr[u].v
-    u.v = max(l.v, r.v);
+    u.sum = l.sum + r.sum;
 }
 
 void pushup(int u) {
     pushup(tr[u], tr[u << 1], tr[u << 1 | 1]);
 }
 
+void pushdown(int u) {
+    Node &rt = tr[u], &l = tr[u << 1], &r = tr[u << 1 | 1];
+    if (rt.add) {
+        l.add += rt.add, l.sum += (LL)(l.r - l.l + 1) * rt.add;
+        r.add += rt.add, r.sum += (LL)(r.r - r.l + 1) * rt.add;
+        rt.add = 0;
+    }
+}
+
 void build(int u, int l, int r) {
-    if (l == r) tr[u] = {l, r, v} // init
+    if (l == r) tr[u] = {l, r, w[r]} // init
     else {
         tr[u] = {l, r};
         int mid = l + r >> 1;
@@ -33,8 +41,23 @@ void modify(int u, int x, int v) {
     }
 }
 
+// range update
+void modify(int u, int l, int r, int d) {
+    if (tr[u].l >= l && tr[u].r <= r) {
+        tr[u].sum += (LL)(tr[u].r - tr[u].l + 1) * d;
+        tr[u].add += d;
+    } else {
+        pushdown(d);
+        int mid = tr[u].l + tr[u].r >> 1;
+        if (l <= mid) modify(u << 1, l, r, d);
+        if (r > mid) modify(u << 1 | 1, l, r, d);
+        pushup(u);
+    }
+}
+
 Node query(int u, int l, int r) {
     if (tr[u].l >= l && tr[u].r <= r) return tr[u];
+    pushdown(u); // for range update
     int mid = tr[u].l + tr[u].r >> 1;
     if (r <= mid) return query(u << 1, l, r);
     if (l > mid) return query(u << 1 | 1, l, r);
