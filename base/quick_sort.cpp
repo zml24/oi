@@ -6,6 +6,5 @@ void quick_sort(int l, int r) {
         do j--; while (q[j] > x);
         if (i < j) swap(q[i], q[j]);
     }
-
     quick_sort(l, j), quick_sort(j + 1, r);
 }

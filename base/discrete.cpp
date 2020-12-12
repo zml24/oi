@@ -9,5 +9,5 @@ int find(int x) {
         if (alls[mid] >= x) r = mid;
         else l = mid + 1;
     }
-    return r + 1; // index from 1
+    return r + 1; // fenwick tree, index from 1
 }
