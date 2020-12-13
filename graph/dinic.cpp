@@ -20,7 +20,7 @@ bool bfs() {
 int find(int u, int limit) {
     if (u == T) return limit;
     int flow = 0;
-    for (int i = cur[u]; ~i && flow < limit; i = ne[i]) {
+    for (int i = cur[u]; i != -1 && flow < limit; i = ne[i]) {
         cur[u] = i;
         int j = e[i];
         if (d[j] == d[u] + 1 && f[i]) {
