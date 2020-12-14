@@ -17,6 +17,6 @@ int kruskal() {
             cnt++;
         }
     }
-    if (cnt < n - 1) return 0x3f3f3f3f;
+    if (cnt < n - 1) return INF;
     return res;
 }

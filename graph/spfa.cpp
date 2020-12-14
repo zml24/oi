@@ -19,6 +19,6 @@ int spfa() {
             }
         }
     }
-    if (dist[n] == 0x3f3f3f3f) return -1;
+    if (dist[n] == INF) return -1;
     else return dist[n];
 }

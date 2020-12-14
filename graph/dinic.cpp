@@ -1,3 +1,8 @@
+void add(int a, int b, int c) {
+    e[idx] = b, f[idx] = c, ne[idx] = h[a], h[a] = idx++;
+    e[idx] = a, f[idx] = 0, ne[idx] = h[b], h[b] = idx++;
+}
+
 bool bfs() {
     int hh = 0, tt = -1;
     memset(d, -1, sizeof d);
@@ -35,7 +40,6 @@ int find(int u, int limit) {
 int dinic() {
     int res = 0, flow;
     while (bfs())
-        while (flow = find(S, INF))
-            res += flow;
+        while (flow = find(S, INF)) res += flow;
     return res;
 }

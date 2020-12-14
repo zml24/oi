@@ -1,4 +1,4 @@
-int read_int() {
+int read() {
     int res = 0;
     char op = getchar();
     while (op < '0' || op > '9') op = getchar();

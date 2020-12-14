@@ -1,4 +1,4 @@
-# single linked list
+// single linked list
 int head, e[N], ne[N], idx;
 
 void init() {
@@ -18,7 +18,7 @@ void remove(int k) {
     else ne[k] = ne[ne[k]];
 }
 
-# double linked list
+// double linked list
 int e[N], l[n], r[N], idx = 2;
 
 void init() {
