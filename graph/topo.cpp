@@ -11,3 +11,7 @@ bool topsort() {
     }
     return tt == n - 1;
 }
+
+void print() {
+    for (int i = 0; i < n, i++) printf("%d ", q[i]);
+}

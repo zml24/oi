@@ -32,6 +32,8 @@ int find(int u, int limit) {
             int t = find(j, min(f[i], limit - flow));
             if (!t) d[j] = -1;
             f[i] -= t, f[i ^ 1] += t, flow += t;
+            // print path in bipartite graph
+            // if (t) nxt[u] = j - n;
         }
     }
     return flow;
@@ -42,4 +44,13 @@ int dinic() {
     while (bfs())
         while (flow = find(S, INF)) res += flow;
     return res;
+}
+
+void print() {
+    for (int i = h[T]; i != -1; i = ne[i])
+        if (f[i ^ 1]) {
+            int j = e[i] - n;
+            while (j) printf("%d ", j), j = nxt[j];
+            puts("");
+        }
 }
