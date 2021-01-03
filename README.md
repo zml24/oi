@@ -32,6 +32,7 @@
 
 ## Dynamic Programming
 
+- [Longest increasing subsequence](https://github.com/zml24/oi/blob/master/dp/lis.cpp)
 - [State Compression](https://github.com/zml24/oi/blob/master/dp/state.cpp)
 
 ## Data Structure
