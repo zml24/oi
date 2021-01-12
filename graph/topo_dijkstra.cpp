@@ -30,11 +30,11 @@ void dijkstra(int bid) {
 void topsort() {
     memset(dist, 0x3f, sizeof dist);
     dist[1] = 0;
-    int hh = 0, tt = -1;
     for (int i = 1; i <= bcnt; i++)
-        if (!d[i]) q[++tt] = i;
-    while (hh <= tt) {
-        int t = q[hh++];
+        if (!d[i]) q.push(i);
+    while (q.size()) {
+        int t = q.front();
+        q.pop();
         dijkstra(t);
     }
 }
