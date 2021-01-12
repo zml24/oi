@@ -23,8 +23,8 @@
 - [Read Int](https://github.com/zml24/oi/blob/master/string/read.cpp)
 - [String Hashing](https://github.com/zml24/oi/blob/master/string/hash.cpp)
 - [Trie](https://github.com/zml24/oi/blob/master/string/trie.cpp)
-- [Prefix function - Knuth-Morris-Pratt](https://github.com/zml24/oi/blob/master/string/kmp.cpp)
-- [Manacher's Algorithm - Finding all sub-palindromes in O(N)](https://github.com/zml24/oi/blob/master/string/manacher.cpp)
+- [Knuth-Morris-Pratt](https://github.com/zml24/oi/blob/master/string/kmp.cpp)
+- [Manacher's Algorithm](https://github.com/zml24/oi/blob/master/string/manacher.cpp)
 
 ## Search
 
@@ -32,7 +32,7 @@
 
 ## Dynamic Programming
 
-- [Longest increasing subsequence](https://github.com/zml24/oi/blob/master/dp/lis.cpp)
+- [Longest Increasing Subsequence](https://github.com/zml24/oi/blob/master/dp/lis.cpp)
 - [State Compression](https://github.com/zml24/oi/blob/master/dp/state.cpp)
 
 ## Data Structure
@@ -58,11 +58,12 @@
   - [Prim's Algorithm](https://github.com/zml24/oi/blob/master/graph/prim.cpp)
   - [Kruskal with Disjoint Set Union](https://github.com/zml24/oi/blob/master/graph/kruskal.cpp)
 - Shortest paths
-  - [Bellman-Ford - finding shortest paths with negative weights](https://github.com/zml24/oi/blob/master/graph/bellman_ford.cpp)
+  - [Bellman-Ford](https://github.com/zml24/oi/blob/master/graph/bellman_ford.cpp)
   - [Shortest Path Faster Algorithm (SPFA)](https://github.com/zml24/oi/blob/master/graph/spfa.cpp)
-  - [Dijkstra - finding shortest paths from given vertex](https://github.com/zml24/oi/blob/master/graph/dijkstra.cpp)
-  - [Floyd-Warshall - finding all shortest paths](https://github.com/zml24/oi/blob/master/graph/floyd.cpp)
-- [Kuhn's Algorithm for Maximum Bipartite Matching](https://github.com/zml24/oi/blob/master/graph/hungarian.cpp)
+  - [Dijkstra](https://github.com/zml24/oi/blob/master/graph/dijkstra.cpp)
+  - [Topological sort with Dijkstra for shortest paths with negative edges](https://github.com/zml24/oi/blob/master/graph/topo_dijkstra.cpp)
+  - [Floyd-Warshall](https://github.com/zml24/oi/blob/master/graph/floyd.cpp)
+- [Kuhn's Algorithm](https://github.com/zml24/oi/blob/master/graph/hungarian.cpp)
 - Flows
   - [Dinic's algorithm](https://github.com/zml24/oi/blob/master/graph/dinic.cpp)
-- [Topological Sorting](https://github.com/zml24/oi/blob/master/graph/topo.cpp)
+- [Topological Sort](https://github.com/zml24/oi/blob/master/graph/topo.cpp)
