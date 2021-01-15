@@ -61,7 +61,7 @@
   - [Bellman-Ford](https://github.com/zml24/oi/blob/master/graph/bellman_ford.cpp)
   - [Shortest Path Faster Algorithm (SPFA)](https://github.com/zml24/oi/blob/master/graph/spfa.cpp)
   - [Dijkstra](https://github.com/zml24/oi/blob/master/graph/dijkstra.cpp)
-  - [Topological Sort with Dijkstra for shortest paths with negative edges](https://github.com/zml24/oi/blob/master/graph/topo_dijkstra.cpp)
+  - [Topological Sort with Dijkstra for shortest paths in DAG with negative edges](https://github.com/zml24/oi/blob/master/graph/topo_dijkstra.cpp)
   - [Floyd-Warshall](https://github.com/zml24/oi/blob/master/graph/floyd.cpp)
 - [Kuhn's Algorithm](https://github.com/zml24/oi/blob/master/graph/hungarian.cpp)
 - Flows
