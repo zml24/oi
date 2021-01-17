@@ -21,15 +21,14 @@ int dijkstra() {
     priority_queue<PII, vector<PII>, greater<PII>> heap;
     heap.push({0, 1});
     while (heap.size()) {
-        auto t = heap.top();
+        int t = heap.top().second;
         heap.pop();
-        int u = t.second;
-        if (st[u]) continue;
-        st[u] = true;
-        for (int i = h[u]; i != -1; i = ne[i]) {
+        if (st[t]) continue;
+        st[t] = true;
+        for (int i = h[t]; i != -1; i = ne[i]) {
             int j = e[i];
-            if (dist[j] > dist[u] + w[i]) {
-                dist[j] = dist[u] + w[i];
+            if (dist[j] > dist[t] + w[i]) {
+                dist[j] = dist[t] + w[i];
                 heap.push({dist[j], j});
             }
         }
