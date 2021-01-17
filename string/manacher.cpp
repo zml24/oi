@@ -1,39 +1,20 @@
-char s[N];
-char s_new[2 * N];
-
-int init() {
-    int j = 0, len = strlen(s);
-    s_new[j++] = '$';
-    s_new[j++] = '#';
-
-    for (int i = 0; i < len; i++) {
-        s_new[j++] = s[i];
-        s_new[j++] = '#';
-    }
-
-    s_new[j++] = '^';
-    s_new[j++] = '\0';
-
-    return j;
+void init() {
+    int k = 0;
+    b[k++] = '$', b[k++] = '#';
+    for (int i = 0; i < n; i++) b[k++] = a[i], b[k++] = '#';
+    b[k++] = '^';
+    n = k;
 }
 
-int manacher() {
-    int len = init();
-    int max_len = -1;
-
-    int id;
-    int mx = 0;
-
-    for (int i = 1; i < len; i++) {
-        if (i < mx) p[i] = min(p[2 * id - i], mx - i);
+void manacher() {
+    int mr = 0, mid;
+    for (int i = 0; i < n; i++) {
+        if (i < mr) p[i] = min(p[mid * 2 - i], mr - i);
         else p[i] = 1;
-        while (s_new[i - p[i]] == s_new[i + p[i]]) p[i]++;
-        if (mx < i + p[i]) {
-            id = i;
-            mx = i + p[i];
+        while (b[i - p[i]] == b[i + p[i]]) p[i]++;
+        if (i + p[i] > mr) {
+            mr = i + p[i];
+            mid = i;
         }
-        max_len = max(max_len, p[i] - 1);
     }
-    
-    return max_len;
 }
