@@ -4,7 +4,7 @@ int bellman_ford() {
     for (int i = 0; i < k; i++) {
         memcpy(backup, dist, sizeof dist);
         for (int j = 0; j < m; j++) {
-            int a = edges[i].a, b = edges[i].b, w = edges[i].w;
+            int a = edges[j].a, b = edges[j].b, w = edges[j].w;
             dist[b] = min(dist[b], backup[a] + w);
         }
     }

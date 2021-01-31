@@ -1,11 +1,6 @@
-void add(int a, int b, int c) {
-    e[idx] = b, f[idx] = c, ne[idx] = h[a], h[a] = idx++;
-    e[idx] = a, f[idx] = 0, ne[idx] = h[b], h[b] = idx++;
-}
-
 bool bfs() {
-    int hh = 0, tt = -1;
     memset(d, -1, sizeof d);
+    int hh = 0, tt = -1;
     q[++tt] = S, d[S] = 0, cur[S] = h[S];
     while (hh <= tt) {
         int t = q[hh++];
@@ -32,8 +27,6 @@ int find(int u, int limit) {
             int t = find(j, min(f[i], limit - flow));
             if (!t) d[j] = -1;
             f[i] -= t, f[i ^ 1] += t, flow += t;
-            // print path in bipartite graph
-            // if (t) nxt[u] = j - n;
         }
     }
     return flow;
@@ -47,10 +40,6 @@ int dinic() {
 }
 
 void print() {
-    for (int i = h[T]; i != -1; i = ne[i])
-        if (f[i ^ 1]) {
-            int j = e[i] - n;
-            while (j) printf("%d ", j), j = nxt[j];
-            puts("");
-        }
+    for (int i = 0; i < idx; i++)
+        if (e[i] > m && e[i] <= n && !f[i]) printf("%d %d\n", e[i ^ 1], e[i]);
 }
