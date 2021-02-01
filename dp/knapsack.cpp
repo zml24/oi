@@ -5,3 +5,17 @@ for (int i = 1; i <= n; i++)
 // unbounded knapsack
 for (int i = 1; i <= n; i++)
     for (int j = w[i]; j <= m; j++) f[j] = max(f[j], f[j - w[i]] + v[i]);
+
+// bounded knapsack
+for (int i = 1; i <= n; i++) {
+    memcpy(g, f, sizeof f);
+    for (int j = 0; j < v[i]; j++) {
+        int hh = 0, tt = -1;
+        for (int k = j; k <= m; k++) {
+            if (hh <= tt && q[hh] < k - s * v) hh++;
+            while (hh <= tt && g[q[tt]] - (q[tt] - j) / v * w <= g[k] - (k - j) / v * w) tt--;
+            q[++tt] = k;
+            f[k] = g[q[hh]] + (k - q[hh]) / v * w;
+        }
+    }
+}
