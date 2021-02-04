@@ -6,7 +6,7 @@ for (int i = 0; i < n; i++)
 for (int i = 0; i < n; i++)
     for (int j = v; j <= m; j++) f[j] = max(f[j], f[j - v] + w);
 
-// O(nmlogs): bounded knapsack with binary lifting
+// bounded knapsack with binary lifting in O(nmlogs)
 for (int i = 0; i < n; i++) {
     for (int k = 1; k <= s; s -= k, k *= 2)
         for (int j = m; j >= k * v; j--) f[j] = max(f[j], f[j - k * v] + k * w);
@@ -14,7 +14,7 @@ for (int i = 0; i < n; i++) {
         for (int j = m; j >= s * v; j--) f[j] = max(f[j], f[j - s * v] + s * w);
 }
 
-// O(nm): bounded knapsack with monotonous queue
+// bounded knapsack with monotonous queue in O(nm)
 for (int i = 0; i < n; i++) {
     memcpy(g, f, sizeof f);
     for (int j = 0; j < v; j++) {

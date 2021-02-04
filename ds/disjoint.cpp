@@ -22,14 +22,11 @@ int find(int x) {
 }
 
 void init() {
-    for (int i = 1; i <= n; i++) {
-        p[i] = i;
-        cnt[i] = 1;
-    }
+    for (int i = 1; i <= n; i++) p[i] = i, cnt[i] = 1;
 }
 
 void union(int a, int b) {
-    size[find(b)] += size[find(a)];
+    cnt[find(b)] += cnt[find(a)];
     p[find(a)] = find(b);
 }
 
@@ -46,10 +43,7 @@ int find(int x) {
 }
 
 void init() {
-    for (int i = 1; i <= n; i++) {
-        p[i] = i;
-        d[i] = 0;
-    }
+    for (int i = 1; i <= n; i++) p[i] = i, d[i] = 0;
 }
 void union(int a, int b) {
     p[find(a)] = find(b);

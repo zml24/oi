@@ -1,10 +1,10 @@
 void quick_sort(int l, int r) {
     if (l == r) return;
-    int x = q[l + r >> 1], i = l - 1, j = r + 1;
+    int x = a[l + r >> 1], i = l - 1, j = r + 1;
     while (i < j) {
-        do i++; while (q[i] < x);
-        do j--; while (q[j] > x);
-        if (i < j) swap(q[i], q[j]);
+        do i++; while (a[i] < x);
+        do j--; while (a[j] > x);
+        if (i < j) swap(a[i], a[j]);
     }
     quick_sort(l, j), quick_sort(j + 1, r);
 }
