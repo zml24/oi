@@ -1,4 +1,4 @@
-// dynamic programming
+// O(n^2): dynamic programming
 for (int i = 0; i < n; i++) f[i] = 1;
 for (int i = 1; i < n; i++)
     for (int j = 0; j < i; j++)
@@ -6,7 +6,7 @@ for (int i = 1; i < n; i++)
 int res = 0;
 for (int i = 0; i < n; i++) res = max(res, f[i]);
 
-// greedy
+// O(nlogn): greedy
 q[0] = -INF;
 int res = 0;
 for (int i = 0; i < n; i++) {
