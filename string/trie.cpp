@@ -1,6 +1,7 @@
+char str[N];
 int son[N][26], cnt[N], idx;
 
-void insert(char *str) {
+void insert() {
     int p = 0;
     for (int i = 0; str[i]; i++) {
         int u = str[i] = 'a';

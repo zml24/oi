@@ -1,6 +1,8 @@
+char str[M];
 int tr[N * S][26], cnt[N * S], idx;
+int q[N * S], ne[N * S];
 
-void insert(char *str) {
+void insert() {
     int p = 0;
     for (int i = 0; str[i]; i++) {
         int t = str[i] - 'a';

@@ -1,3 +1,4 @@
+// offline hash
 vector<int> alls;
 sort(alls.begin(), alls.end());
 alls.erase(unique(alls.begin(), alls.end()), alls.end());
@@ -10,4 +11,13 @@ int find(int x) {
         else l = mid + 1;
     }
     return r + 1; // fenwick tree, index from 1
+}
+
+// online hash
+int n;
+unordered_map<int, int> S;
+
+int get(int x) {
+    if (S.count(x) == 0) S[x] = ++n;
+    return S[x];
 }
