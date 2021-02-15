@@ -13,6 +13,11 @@ int find(int x) {
     return r + 1; // fenwick tree, index from 1
 }
 
+// stl find (slower)
+int find(int x) {
+    return lower_bound(alls.begin(), alls.end(), x) - alls.begin();
+}
+
 // online hash
 int n;
 unordered_map<int, int> S;

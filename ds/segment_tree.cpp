@@ -11,17 +11,21 @@ void pushup(int u) {
     pushup(tr[u], tr[u << 1], tr[u << 1 | 1]);
 }
 
+void eval(Node &u, int add) {
+    u.add += add;
+    u.sum += (LL)(u.r - u.l + 1) * add;
+}
+
 void pushdown(int u) {
-    Node &rt = tr[u], &l = tr[u << 1], &r = tr[u << 1 | 1];
     if (rt.add) {
-        l.add += rt.add, l.sum += (LL)(l.r - l.l + 1) * rt.add;
-        r.add += rt.add, r.sum += (LL)(r.r - r.l + 1) * rt.add;
+        eval(tr[u << 1], rt.add);
+        eval(tr[u << 1 | 1], rt.add);
         rt.add = 0;
     }
 }
 
 void build(int u, int l, int r) {
-    if (l == r) tr[u] = {l, r, w[r]} // init
+    if (l == r) tr[u] = {l, r, w[r]}; // init
     else {
         tr[u] = {l, r};
         int mid = l + r >> 1;
@@ -43,11 +47,9 @@ void modify(int u, int x, int v) {
 
 // range update
 void modify(int u, int l, int r, int d) {
-    if (tr[u].l >= l && tr[u].r <= r) {
-        tr[u].sum += (LL)(tr[u].r - tr[u].l + 1) * d;
-        tr[u].add += d;
-    } else {
-        pushdown(d);
+    if (tr[u].l >= l && tr[u].r <= r) eval(tr[u], d);
+    else {
+        pushdown(u);
         int mid = tr[u].l + tr[u].r >> 1;
         if (l <= mid) modify(u << 1, l, r, d);
         if (r > mid) modify(u << 1 | 1, l, r, d);
