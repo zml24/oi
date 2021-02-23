@@ -1,8 +1,8 @@
 int tr[M][26], cnt[M];
 int root[N], idx;
 
-// insert str to version q from version p
-void insert(char *str, int p, int q) {
+void insert(int p, char* str) {
+    int q = ++idx;
     for (int i = 0; str[i]; i++) {
         int u = str[i] - 'a';
         if (p)
@@ -15,7 +15,7 @@ void insert(char *str, int p, int q) {
     cnt[q]++;
 }
  
-int query(char *str, int p) {
+int query(int p, char* str) {
     for (int i = 0; str[i]; i++) {
         int u = str[i] - 'a';
         if (!tr[p][u]) return 0;

@@ -1,8 +1,8 @@
 int tr[M][2];
 int root[N], idx;
 
-// insert x to version q from version p
-void insert(int x, int p, int q) {
+void insert(int p, int x) {
+    int q = ++idx;
     for (int i = 30; i >= 0; i--) {
         int u = x >> i & 1;
         if (p) tr[q][u ^ 1] = tr[p][u ^ 1];
@@ -12,7 +12,7 @@ void insert(int x, int p, int q) {
 }
 
 // maximum xor
-int query(int x, int p) {
+int query(int p, int x) {
     for (int i = 30; i >= 0; i--) {
         int tmp = 1 << i;
         int u = x >> i & 1;
