@@ -17,5 +17,5 @@ for (int i = 0; i < n; i++) {
         else r = mid - 1;
     }
     res = max(res, r + 1);
-    q[r + 1] = mid - 1;
+    q[r + 1] = a[i];
 }
