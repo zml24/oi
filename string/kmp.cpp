@@ -1,7 +1,6 @@
 char s[n + 1], p[m + 1]; // index from 1
 int ne[N];
 
-// next array generation
 void build() {
     for (int i = 2, j = 0; i <= m; i++) {
         while (j && p[i] != p[j + 1]) j = ne[j];
