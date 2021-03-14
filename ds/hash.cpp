@@ -1,3 +1,5 @@
+const int N = 200003;
+
 // chaining
 int h[N], e[N], ne[N], idx;
 

@@ -17,3 +17,7 @@ int get(int x) {
 int get_len(int x) {
     return 32 - __biiltin_clz(x);
 }
+
+// number to binary string
+string s = bitset<N>(x).to_string();
+s.erase(0, s.find_first_of('1'));
