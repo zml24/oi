@@ -52,10 +52,10 @@ void merge(int a, int b) {
 }
 
 // union by rank (size not depth)
-int p[N], rank[N];
+int p[N], sz[N];
 
 void init() {
-    for (int i = 1; i <= n; i++) p[i] = i, rank[i] = 1;
+    for (int i = 1; i <= n; i++) p[i] = i, sz[i] = 1;
 }
 
 int find(int x) {
@@ -66,8 +66,8 @@ int find(int x) {
 void merge(int a, int b) {
     int pa = find(a), pb = find(b);
     if (pa != pb) {
-        if (rank[pa] < rank[pb]) swap(pa, pb);
+        if (sz[pa] < sz[pb]) swap(pa, pb);
         p[pb] = pa;
-        rank[pa] += rank[pb];
+        sz[pa] += sz[pb];
     }
 }
