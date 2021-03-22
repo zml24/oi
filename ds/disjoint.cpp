@@ -13,23 +13,6 @@ void merge(int a, int b) {
     p[find(a)] = find(b);
 }
 
-// with size
-int p[N], cnt[N];
-
-void init() {
-    for (int i = 1; i <= n; i++) p[i] = i, cnt[i] = 1;
-}
-
-int find(int x) {
-    if (p[x] != x) p[x] = find(p[x]);
-    return p[x];
-}
-
-void merge(int a, int b) {
-    cnt[find(b)] += cnt[find(a)];
-    p[find(a)] = find(b);
-}
-
 // with distance
 int p[N], d[N];
 
@@ -51,7 +34,7 @@ void merge(int a, int b) {
     d[find(a)] = dis;
 }
 
-// union by rank (size not depth)
+// union by rank (size)
 int p[N], sz[N];
 
 void init() {
