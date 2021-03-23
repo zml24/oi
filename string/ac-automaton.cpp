@@ -21,7 +21,7 @@ void build() {
             int p = tr[t][i];
             if (!p) tr[t][i] = tr[ne[t]][i];
             else {
-                ne[p] = tr[ne[t][i]];
+                ne[p] = tr[ne[t]][i];
                 q[++tt] = p;
             }
         }
