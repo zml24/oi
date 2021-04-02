@@ -1,5 +1,5 @@
 struct Node {
-    int l, int r;
+    int l, r;
     int sum, add;
 }tr[N << 2];
 
