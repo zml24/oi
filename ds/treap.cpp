@@ -30,6 +30,7 @@ void zag(int &p) {
 }
 
 void build() {
+    idx = 0;
     get_node(-INF), get_node(INF);
     root = 1, tr[1].r = 2;
     pushup(root);
