@@ -15,10 +15,10 @@ void eval() {
     num[++t1] = res;
 }
 
-int calculate(string s) {
+int calculate(char* str) {
     t1 = t2 = 0;
     pr['+'] = pr['-'] = 1, pr['*'] = pr['/'] = 2;
-    int n = s.size();
+    int n = strlen(str);
     for (int i = 0; i < n; i++) {
         auto c = s[i];
         if (c == ' ') continue;

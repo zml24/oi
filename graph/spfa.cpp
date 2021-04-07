@@ -38,6 +38,8 @@ int spfa() {
             int j = e[i];
             if (dist[j] > dist[t] + w[i]) {
                 dist[j] = dist[t] + w[i];
+                cnt[j] = cnt[t] + 1;
+                if (cnt[j] >= n) return -1;
                 if (!st[j]) {
                     if (q.empty() || dist[q.front()] < dist[j]) q.push_back(j);
                     else q.push_front(j);

@@ -1,7 +1,12 @@
-// offline hash
+// offline hash c++
 vector<int> alls;
 sort(alls.begin(), alls.end());
 alls.erase(unique(alls.begin(), alls.end()), alls.end());
+
+// offline hash c
+int m, alls[N];
+sort(alls, alls + m);
+m = unique(alls, alls + m) - alls;
 
 int find(int x) {
     int l = 0, r = alls.size() - 1;
