@@ -1,4 +1,5 @@
-int stk[N], tt = 0;
+int tt = 0;
+int stk[N];
 
 void push(int x) {
     stk[++tt] = x;

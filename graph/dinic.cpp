@@ -1,7 +1,23 @@
+int n, m, S, T;
+int h[N], e[M], f[M], ne[M], idx;
+int q[N], d[N], cur[N];
+
+void init() {
+    memset(h, -1, sizeof h);
+    idx = 0;
+}
+
+void add(int a, int b, int c) {
+    e[idx] = b, f[idx] = c, ne[idx] = h[a], h[a] = idx++;
+    e[idx] = a, f[idx] = 0, ne[idx] = h[b], h[b] = idx++;
+}
+
 bool bfs() {
     memset(d, -1, sizeof d);
+    d[S] = 0;
     int hh = 0, tt = -1;
-    q[++tt] = S, d[S] = 0, cur[S] = h[S];
+    q[++tt] = S;
+    cur[S] = h[S];
     while (hh <= tt) {
         int t = q[hh++];
         for (int i = h[t]; i != -1; i = ne[i]) {

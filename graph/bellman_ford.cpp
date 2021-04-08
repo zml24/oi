@@ -1,3 +1,10 @@
+struct Edge {
+    int a, b, w;
+}edges[M];
+
+int m;
+int dist[N], backup[N];
+
 int bellman_ford() {
     memset(dist, 0x3f, sizeof dist);
     dist[1] = 0;

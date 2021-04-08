@@ -1,4 +1,4 @@
-int n;
+int n, S, T;
 int g[N][N];
 int dist[N];
 bool st[N];
@@ -12,17 +12,17 @@ void add(int a, int b, int c) {
     g[a][b] = min(g[a][b], c);
 }
 
-int prim() {
-    memset(dist, 0x3f, sizeof dist);
-    int res = 0;
+int dijkstra() {
+    memset(dist, INF, sizeof dist);
+    memset(st, 0, sizeof st);
+    dist[S] = 0;
     for (int i = 0; i < n; i++) {
         int t = -1;
         for (int j = 1; j <= n; j++)
             if (!st[j] && (t == -1 || dist[t] > dist[j])) t = j;
-        if (i && dist[t] == INF) return -1;
         st[t] = true;
-        if (i) res += dist[t];
-        for (int j = 1; j <= n; j++) dist[j] = min(dist[j], g[t][j]);
+        for (int j = 1; j <= n; j++) dist[j] = min(dist[j], dist[t] + g[t][j]);
     }
-    return res;
+    if (dist[n] > INF / 2) return -1;
+    else return dist[T];
 }

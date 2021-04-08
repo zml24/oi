@@ -1,5 +1,10 @@
 int tr[N][2], idx;
 
+void init() {
+    memset(tr, 0, sizeof tr);
+    idx = 0;
+}
+
 void insert(int x) {
     int p = 0;
     for (int i = 30; i >= 0; i--) {
@@ -9,8 +14,7 @@ void insert(int x) {
     }
 }
 
-// maximum xor
-int query(int x) {
+int query_xor(int x) {
     int res = 0, p = 0;
     for (int i = 30; i >= 0; i--) {
         int tmp = 1 << i;

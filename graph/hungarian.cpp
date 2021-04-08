@@ -1,3 +1,17 @@
+int n, m;
+int h[N], e[M], ne[M], idx;
+int match[N];
+bool st[N];
+
+void init() {
+    memset(h, -1, sizeof h);
+    idx = 0;
+}
+
+void add(int a, int b) {
+    e[idx] = b, ne[idx] = h[a], h[a] = idx++;
+}
+
 bool find(int x) {
     for (int i = h[x]; i != -1; i = ne[i]) {
         int j = e[i];
@@ -13,6 +27,8 @@ bool find(int x) {
 }
 
 int matching() {
+    memset(match, 0, sizeof match);
+    memset(st, 0, sizeof st);
     int res = 0;
     for (int i = 1; i <= n; i++) {
         memset(st, false, sizeof st);

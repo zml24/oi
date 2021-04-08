@@ -1,9 +1,9 @@
-int qmi(int a, int b) {
-    int res = 1;
-    while (b) {
-        if (b & 1) res = (LL)res * a % MOD;
-        a = (LL)a * a % MOD;
-        b >>= 1;
+int qmi(int a, int k, int p) {
+    LL res = 1;
+    while (k) {
+        if (k & 1) res = (LL)res * a % p;
+        a = (LL)a * a % p;
+        k >>= 1;
     }
     return res;
 }

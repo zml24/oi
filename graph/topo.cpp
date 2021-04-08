@@ -1,3 +1,16 @@
+int n, m;
+int h[N], e[M], d[N], ne[M], idx;
+int q[N];
+
+void init() {
+    memset(h, -1, sizeof h);
+    idx = 0;
+}
+
+void add(int a, int b) {
+    e[idx] = b, d[b]++, ne[idx] = h[a], h[a] = idx++;
+}
+
 bool topsort() {
     int hh = 0, tt = -1;
     for (int i = 1; i <= n; i++)

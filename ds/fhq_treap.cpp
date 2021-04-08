@@ -92,7 +92,7 @@ int get_prev(int &p, int key) {
 int get_next(int &p, int key) {
     int x = 0, y = 0;
     split(p, x, y, key); // > key
-    split(p, x, y, key - 1); // > key
+    split(p, x, y, key - 1); // >= key
     int res = get_key_by_rank(y, 1);
     merge(p, x, y);
     return res;

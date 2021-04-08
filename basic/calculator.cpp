@@ -1,22 +1,22 @@
-int t1, t2;
+int tt1, tt2;
 LL num[N];
 char op[N];
 unordered_map<char, int> pr;
 
 void eval() {
-    LL b = num[t1--], a = num[t1--];
-    char c = op[t2--];
-    t1 = max(t1, 0);
+    LL b = num[tt1--], a = num[tt1--];
+    char c = op[tt2--];
+    tt1 = max(tt1, 0);
     LL res;
     if (c == '+') res = a + b;
     else if (c == '-') res = a - b;
     else if (c == '*') res = a * b;
     else res = a / b;
-    num[++t1] = res;
+    num[++tt1] = res;
 }
 
 int calculate(char* str) {
-    t1 = t2 = 0;
+    tt1 = tt2 = 0;
     pr['+'] = pr['-'] = 1, pr['*'] = pr['/'] = 2;
     int n = strlen(str);
     for (int i = 0; i < n; i++) {
@@ -26,17 +26,17 @@ int calculate(char* str) {
             LL x = 0;
             int j = i;
             while (j < n && isdigit(s[j])) x = x * 10 + (s[j++] - '0');
-            num[++t1] = x;
+            num[++tt1] = x;
             i = j - 1;
-        } else if (c == '(') op[++t2] = c;
+        } else if (c == '(') op[++tt2] = c;
         else if (c == ')') {
-            while (op[t2] != '(') eval();
-            t2--;
+            while (op[tt2] != '(') eval();
+            tt2--;
         } else {
-            while (t2 && op[t2] != '(' && pr[op[t2]] >= pr[c]) eval();
-            op[++t2] = c;
+            while (tt2 && op[tt2] != '(' && pr[op[tt2]] >= pr[c]) eval();
+            op[++tt2] = c;
         }
     }
-    while (t2) eval();
-    return num[t1];
+    while (tt2) eval();
+    return num[tt1];
 }

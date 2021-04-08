@@ -1,3 +1,7 @@
+int n;
+int w[N];
+int f[N][N];
+
 void init() {
     for (int j = 0; j < M; j++)
         for (int i = 1; i + (1 << j) - 1 <= n; i++)
