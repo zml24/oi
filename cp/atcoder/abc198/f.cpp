@@ -15,7 +15,8 @@ const int INF = 0x3f3f3f3f;
 // const double INF = 1e20;
 const double PI = acos(-1);
 const double eps = 1e-8;
-const int mod = 1e9 + 7;
+// const int mod = 1e9 + 7;
+const int mod = 998244353;
 const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 
 void quick_read() {
@@ -30,10 +31,6 @@ void solve() {
 
 int main() {
     quick_read();
-    int TT;
-    scanf("%d", &TT);
-    while (TT--) {
-        solve();
-    }
+    solve();
     return 0;
 }

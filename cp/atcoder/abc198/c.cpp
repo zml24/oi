@@ -18,6 +18,8 @@ const double eps = 1e-8;
 const int mod = 1e9 + 7;
 const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 
+LL n, x, y;
+
 void quick_read() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -25,15 +27,18 @@ void quick_read() {
 }
 
 void solve() {
-
+    scanf("%lld%lld%lld", &n, &x, &y);
+    if (x * x + y * y == n * n) puts("1");
+    else if (x * x + y * y <= 4 * n * n) puts("2");
+    else {
+        LL res = (x * x + y * y + n * n - 1) / (n * n);
+        res = ceil(sqrt(res));
+        printf("%lld\n", res);
+    }
 }
 
 int main() {
     quick_read();
-    int TT;
-    scanf("%d", &TT);
-    while (TT--) {
-        solve();
-    }
+    solve();
     return 0;
 }

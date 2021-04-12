@@ -2,7 +2,6 @@
 
 #define x first
 #define y second
-#define endl '\n'
 
 using namespace std;
 
@@ -18,6 +17,12 @@ const double eps = 1e-8;
 const int mod = 1e9 + 7;
 const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 
+const int N = 110;
+
+int n;
+int w[N];
+map<int, int> mp;
+
 void quick_read() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -25,7 +30,19 @@ void quick_read() {
 }
 
 void solve() {
-
+    scanf("%d", &n);
+    mp.clear();
+    for (int i = 1; i <= n; i++) scanf("%d", &w[i]);
+    if (w[1] == w[2]) {
+        for (int i = 3; i <= n; i++)
+            if (w[i] != w[1]) {
+                printf("%d\n", i);
+                break;
+            }
+    } else {
+        if (w[1] == w[3]) printf("%d\n", 2);
+        else printf("%d\n", 1);
+    }
 }
 
 int main() {

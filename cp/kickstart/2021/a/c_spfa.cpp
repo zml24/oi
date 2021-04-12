@@ -1,28 +1,4 @@
 #include <bits/stdc++.h>
-#define x first
-#define y second
-
-using namespace std;
-
-typedef long long LL;
-typedef pair<int, int> PII;
-typedef pair<int, long> PIL;
-
-const int dx[4] = {0, 0, -1, 1}, dy[4] = {1, -1, 0, 0};
-const int INF = 1e10;
-
-
-
-int main() {
-    int TT;
-    scanf("%d", &TT);
-    for (int ca = 1; ca <= TT; ca++) {
-        printf("Case #%d: %lld\n", ca, res);
-    }
-    return 0;
-}
-
-#include <bits/stdc++.h>
 
 #define x first
 #define y second
@@ -45,8 +21,7 @@ const int N = 310, NN = 90010, MM = 450010;
 
 int n, m, S = 0;
 int g[N][N];
-int h[NN], e[MM], ne[MM], idx;
-LL w[MM];
+int h[NN], e[MM], w[MM], ne[MM], idx;
 LL dist[NN];
 bool st[NN];
 

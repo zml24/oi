@@ -1,8 +1,7 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 #define x first
 #define y second
-#define sq(x) (x) * (x)
 
 using namespace std;
 
@@ -23,9 +22,7 @@ const int N = 60, M = 40;
 int n, m, k;
 int w[N][M];
 int s[N][M];
-int f[N][N * M];
-
-// f[i][j] = min(f[i - 1][j], ..., f[i - 1][j - m])
+int f[N][N * M]; // f[i][j] = min(f[i - 1][j], ..., f[i - 1][j - m])
 
 void solve() {
     memset(f, 0, sizeof f);

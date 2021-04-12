@@ -23,7 +23,7 @@ int dijkstra(int S, int T) {
         heap.pop();
         if (st[t]) continue;
         st[t] = true;
-        for (int i = h[t]; i != -1; i = ne[i]) {
+        for (int i = h[t]; ~i; i = ne[i]) {
             int j = e[i];
             if (dist[j] > dist[t] + w[i]) {
                 dist[j] = dist[t] + w[i];
@@ -32,5 +32,5 @@ int dijkstra(int S, int T) {
         }
     }
     if (dist[T] > INF / 2) return -1;
-    else reutrn dist[n];
+    else return dist[n];
 }

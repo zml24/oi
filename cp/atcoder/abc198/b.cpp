@@ -2,7 +2,6 @@
 
 #define x first
 #define y second
-#define endl '\n'
 
 using namespace std;
 
@@ -18,6 +17,10 @@ const double eps = 1e-8;
 const int mod = 1e9 + 7;
 const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 
+const int N = 15;
+
+char str[N];
+
 void quick_read() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -25,15 +28,29 @@ void quick_read() {
 }
 
 void solve() {
-
+    scanf("%s", str);
+    int n = strlen(str);
+    int idx = -1;
+    for (int i = n - 1; ~i; i--)
+        if (str[i] != '0') {
+            idx = i;
+            break;
+        }
+    if (idx == -1) {
+        puts("Yes");
+        return;
+    }
+    idx++;
+    for (int i = 0; i < idx / 2; i++)
+        if (str[i] != str[idx - i - 1]) {
+            puts("No");
+            return;
+        }
+    puts("Yes");
 }
 
 int main() {
     quick_read();
-    int TT;
-    scanf("%d", &TT);
-    while (TT--) {
-        solve();
-    }
+    solve();
     return 0;
 }

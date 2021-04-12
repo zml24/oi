@@ -1,8 +1,7 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 #define x first
 #define y second
-#define sq(x) (x) * (x)
 
 using namespace std;
 

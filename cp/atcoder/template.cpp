@@ -2,7 +2,6 @@
 
 #define x first
 #define y second
-#define endl '\n'
 
 using namespace std;
 
@@ -30,10 +29,6 @@ void solve() {
 
 int main() {
     quick_read();
-    int TT;
-    scanf("%d", &TT);
-    while (TT--) {
-        solve();
-    }
+    solve();
     return 0;
 }

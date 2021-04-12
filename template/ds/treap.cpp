@@ -1,19 +1,19 @@
 struct Node {
     int l, r;
     int key, val;
-    int cnt, size;
+    int cnt, sz;
 }tr[N];
 
 int root, idx;
 
 void pushup(int p) {
-    tr[p].size = tr[tr[p].l].size + tr[tr[p].r].size + tr[p].cnt;
+    tr[p].sz = tr[tr[p].l].sz + tr[tr[p].r].sz + tr[p].cnt;
 }
 
 int get_node(int key) {
     tr[++idx].key = key;
     tr[idx].val = rand();
-    tr[idx].cnt = tr[idx].size = 1;
+    tr[idx].cnt = tr[idx].sz = 1;
     return idx;
 }
 
@@ -30,6 +30,7 @@ void zag(int &p) {
 }
 
 void build() {
+    memset(tr, 0, sizeof tr);
     idx = 0;
     get_node(-INF), get_node(INF);
     root = 1, tr[1].r = 2;
@@ -70,16 +71,16 @@ void remove(int &p, int key) {
 
 int get_rank_by_key(int &p, int key) {
     if (!p) return 0;
-    if (tr[p].key == key) return tr[tr[p].l].size + 1;
+    if (tr[p].key == key) return tr[tr[p].l].sz + 1;
     if (tr[p].key > key) return get_rank_by_key(tr[p].l, key);
-    return tr[tr[p].l].size + tr[p].cnt + get_rank_by_key(tr[p].r, key);
+    return tr[tr[p].l].sz + tr[p].cnt + get_rank_by_key(tr[p].r, key);
 }
 
 int get_key_by_rank(int &p, int rank) {
     if (!p) return INF;
-    if (tr[tr[p].l].size >= rank) return get_key_by_rank(tr[p].l, rank);
-    if (tr[tr[p].l].size + tr[p].cnt >= rank) return tr[p].key;
-    return get_key_by_rank(tr[p].r, rank - tr[tr[p].l].size - tr[p].cnt);
+    if (tr[tr[p].l].sz >= rank) return get_key_by_rank(tr[p].l, rank);
+    if (tr[tr[p].l].sz + tr[p].cnt >= rank) return tr[p].key;
+    return get_key_by_rank(tr[p].r, rank - tr[tr[p].l].sz - tr[p].cnt);
 }
 
 int get_prev(int &p, int key) {

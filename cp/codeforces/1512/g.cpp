@@ -1,8 +1,7 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 
 #define x first
 #define y second
-#define endl '\n'
 
 using namespace std;
 
@@ -18,6 +17,9 @@ const double eps = 1e-8;
 const int mod = 1e9 + 7;
 const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 
+int n;
+unordered_map<int, int> mp = {};
+
 void quick_read() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -25,7 +27,9 @@ void quick_read() {
 }
 
 void solve() {
-
+    scanf("%d", &n);
+    if (mp.count(n)) printf("%d\n", mp[n]);
+    else puts("-1");
 }
 
 int main() {

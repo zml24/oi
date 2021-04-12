@@ -17,24 +17,36 @@ const double eps = 1e-8;
 const int mod = 1e9 + 7;
 const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 
-const int N = 100010;
+const int N = 20;
 
 int n, m;
 int w[N];
 
 void solve() {
-    scanf("%d%d", &n, &m);
-    for (int i = 0; i < n; i++) scanf("%d", &w[i]);
-    sort(w, w + n);
-    int res = 0;
-    for (int i = 0; i < n; i++) {
-        if (m >= w[i]) res++, m -= w[i];
-        else break;
+    n = 0;
+    scanf("%d", &m);
+    while (m--) {
+        int a, b;
+        scanf("%d%d", &a, &b);
+        for (int i = n; i < n + b; i++) w[i] = a;
+        n += b;
     }
-    printf("%d\n", res);
-}   
+    LL res = 0;
+    for (int i = 0; i < 1 << n; i++) {
+        if (__builtin_popcount(i) == 0 || __builtin_popcount(i) == n) continue;
+        LL a = 0, b = 1;
+        for (int j = 0; j < n; j++) {
+            if (i >> j & 1) a += w[j];
+            else b *= w[j];
+        }
+        if (a == b) res = max(res, a);
+    }
+    printf("%lld\n", res);
+}
 
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
     int TT;
     scanf("%d", &TT);
     for (int ca = 1; ca <= TT; ca++) {
