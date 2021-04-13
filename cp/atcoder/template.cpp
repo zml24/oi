@@ -2,6 +2,7 @@
 
 #define x first
 #define y second
+#define endl '\n'
 
 using namespace std;
 

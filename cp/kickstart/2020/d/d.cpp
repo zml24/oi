@@ -2,6 +2,7 @@
 
 #define x first
 #define y second
+#define endl '\n'
 
 using namespace std;
 
@@ -17,47 +18,62 @@ const double eps = 1e-8;
 const int mod = 1e9 + 7;
 const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 
-const int N = 100010;
+void quick_read() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+}
+
+const int N = 100010, M = 18;
 
 int n, m;
 int w[N];
+int f[N][M];
+
+void init(int l, int r) {
+    for (int j = 0; j < M; j++)
+        for (int i = l; i + (1 << j) - 1 <= r; i++)
+            if (!j) f[i][j] = w[i];
+            else f[i][j] = max(f[i][j - 1], f[i + (1 << j - 1)][j - 1]);
+}
+
+int query(int l, int r) {
+    int len = r - l + 1;
+    int k = log2(len);
+    return max(f[l][k], f[r - (1 << k) + 1][k]);
+}
+
+bool check(int st, int k, int mid) {
+    int l = st - mid, r = st + k - mid;
+    return query(l, st - 1) <= query(st, r);
+}
+
+int cal(int st, int k) {
+    int l = max(0, k - (n - st)), r = min(st - 1, k);
+    while (l < r) {
+        int mid = l + r + 1 >> 1;
+        if (check(st, k, mid)) l = mid;
+        else r = mid - 1;
+    }
+    r = st + k - l, l = st - l - 1;
+    return w[l] < w[r] ? l : r + 1;
+}
 
 void solve() {
     scanf("%d%d", &n, &m);
     for (int i = 1; i < n; i++) scanf("%d", &w[i]);
+    w[0] = w[n] = INF;
+    init(0, n);
     while (m--) {
         int a, b;
         scanf("%d%d", &a, &b);
-        int res = 0;
-        if (b == 1) res = a;
-        else if (a == 1) res = b;
-        else if (a == n) res = n - b + 1;
-        else {
-            priority_queue<PII, vector<PII>, greater<PII>> pq;
-            pq.push({w[a - 1], a - 1});
-            pq.push({w[a], a});
-            PII t;
-            int cur = 0; // -1 for left, 1 for right
-            for (int i = 1; i < b; i++) {
-                t = pq.top(); // 1 <= t.y < n
-                pq.pop();
-                if (a > t.y) {
-                    cur = -1;
-                    if (t.y > 1) pq.push({w[t.y - 1], t.y - 1});
-                } else {
-                    cur = 1;
-                    if (t.y < n - 1) pq.push({w[t.y + 1], t.y + 1});
-                }
-            }
-            if (~cur) res = t.y + 1;
-            else res = t.y;
-        }
-        printf("%d ", res);
+        printf("%d ", b == 1 ? a : cal(a, b - 2));
     }
     puts("");
 }
 
 int main() {
+    quick_read();
     int TT;
     scanf("%d", &TT);
     for (int ca = 1; ca <= TT; ca++) {

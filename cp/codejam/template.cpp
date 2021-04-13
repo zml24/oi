@@ -2,6 +2,7 @@
 
 #define x first
 #define y second
+#define endl '\n'
 
 using namespace std;
 
@@ -17,13 +18,18 @@ const double eps = 1e-8;
 const int mod = 1e9 + 7;
 const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 
+void quick_read() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+}
+
 void solve() {
 
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    quick_read();
     int TT;
     scanf("%d", &TT);
     for (int ca = 1; ca <= TT; ca++) {

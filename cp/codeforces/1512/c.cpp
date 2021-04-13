@@ -2,6 +2,7 @@
 
 #define x first
 #define y second
+#define endl '\n'
 
 using namespace std;
 
@@ -17,67 +18,73 @@ const double eps = 1e-8;
 const int mod = 1e9 + 7;
 const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 
-const int N = 200010;
-
-int n, m, w;
-char str[N];
-
 void quick_read() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
 }
 
+const int N = 200010;
+
+int n, a, b, c;
+char s[N];
+
 void solve() {
-    scanf("%d%d%s", &n, &m, str);
-    w = n + m;
-    for (int i = 0; i < w; i++) {
-        if (str[i] == '0') n--;
-        if (str[i] == '1') m--;
+    scanf("%d%d%s", &a, &b, s);
+    n = a + b, c = 0;
+    for (int i = 0; i < n; i++)
+        if (s[i] != '?') {
+            int j = n - i - 1;
+            if (s[j] == '?') s[j] = s[i];
+            else if (s[i] != s[j]) {
+                puts("-1");
+                return;
+            }
+        }
+    for (int i = n - 1; ~i; i--)
+        if (s[i] != '?') {
+            int j = n - i - 1;
+            if (s[j] == '?') s[j] = s[i];
+            else if (s[i] != s[j]) {
+                puts("-1");
+                return;
+            }
+        }
+    for (int i = 0; i < n; i++) {
+        if (s[i] == '0') a--;
+        if (s[i] == '1') b--;
+        if (s[i] == '?') c++;
     }
-    if (n < 0 || m < 0) {
+    bool flag = (n & 1) && (s[n / 2] == '?');
+    if (a < 0 || b < 0 || a + b != c || (flag && a % 2 == 0 && b % 2 == 0)) {
         puts("-1");
         return;
     }
-    for (int i = 0; i < w / 2; i++) {
-        if (str[i] == '?' && str[w - i - 1] == '?') continue;
-        else if (str[w - i - 1] == '?') {
-            str[w - i - 1] = str[i];
-            if (str[i] == '0') n--;
-            else m--;
-            if (n < 0 || m < 0) {
-                puts("-1");
-                return;
-            }
-        } else if (str[i] == '?') {
-            str[i] = str[w - i - 1];
-            if (str[i] == '0') n--;
-            else m--;
-            if (n < 0 || m < 0) {
-                puts("-1");
-                return;
-            }
-        } else if (str[i] != str[w - i - 1]) {
+    if (a & 1 || b & 1) {
+        if (s[n / 2] != '?') {
             puts("-1");
             return;
         }
+        s[n / 2] = (a & 1) ? '0' : '1';
+        if (a & 1) a--;
+        else b--;
     }
-    for (int i = 0; i < w / 2; i++)
-        if (str[i] == '?' && str[w - i - 1] == '?') {
-            if (n) str[i] = str[w - i - 1] = '0', n -= 2;
-            else str[i] = str[w - i - 1] = '1', m -= 2;
-            if (n < 0 || m < 0) {
-                puts("-1");
-                return;
-            }
-        }
-    if (n < 0 || m < 0) {
+    if (a & 1 || b & 1) {
         puts("-1");
         return;
     }
-    if (n) str[w / 2] = '0';
-    if (m) str[w / 2] = '1';
-    printf("%d %d %s\n", n, m, str);
+    for (int i = 0; i < n; i++)
+        if (s[i] == '?') {
+            int j = n - i - 1;
+            if (a) {
+                a -= 2;
+                s[i] = s[j] = '0';
+            } else {
+                b -= 2;
+                s[i] = s[j] = '1';
+            }
+        }
+    printf("%s\n", s);
 }
 
 int main() {

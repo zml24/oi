@@ -68,4 +68,3 @@ Node query(int u, int l, int r) {
     pushup(res, lc, rc);
     return res;
 }
-

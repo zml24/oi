@@ -1,87 +1,59 @@
-#include<bits/stdc++.h>
-
-#define x first
-#define y second
+#include <bits/stdc++.h>
 
 using namespace std;
-
-typedef long long LL;
-typedef pair<int, int> PII;
-typedef pair<int, LL> PIL;
-typedef pair<double, double> PDD;
-
-const int INF = 0x3f3f3f3f;
-// const double INF = 1e20;
-const double PI = acos(-1);
-const double eps = 1e-8;
-const int mod = 1e9 + 7;
-const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
-
-const int N = 510;
-
-int n, l, r, s;
-int w[N];
-bool st[N];
-
-void quick_read() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-}
+using ll = long long;
 
 void solve() {
-    memset(w, 0, sizeof w);
-    memset(st, 0, sizeof st);
-    scanf("%d%d%d%d", &n, &l, &r, &s);
-    int len = r - l + 1;
-    int mi = (1 + len) * len / 2, mx = (n + n - len + 1) * len / 2;
-    if (s > mx || s < mi) puts("-1");
-    else {
-        int avg = s / len, rem = s;
+    int n, l, r, s;
+    cin >> n >> l >> r >> s;
+    l--; r--;
+    for (int first = 1; first + (r - l) <= n; first++) {
+        int sum = 0;
         for (int i = l; i <= r; i++) {
-            w[i] = avg + i + 1 - l - len / 2;
-            st[w[i]] = true;
-            rem -= w[i];
+            sum += first + (i - l);
         }
-        if (rem > 0) {
-            for (int i = r; i >= l; i--) {
-                if (rem != 0) {
-                    int t = min(n, w[i] + rem);
-                    st[w[i]] = false;
-                    rem -= (t - w[i]);
-                    w[i] = t;
-                    st[t] = true;
-                } else break;
+        if (sum <= s && s - sum <= r - l + 1) {
+            int needAdd = r - (s - sum) + 1;
+            vector<int> ans(n);
+            set<int> non_blocked;
+            for (int i = 1; i <= n; i++) {
+                non_blocked.insert(i);
             }
-        } else if (rem < 0) {
             for (int i = l; i <= r; i++) {
-                if (rem != 0) {
-                    int t = max(1, w[i] + rem);
-                    st[w[i]] = false;
-                    rem += (w[i] - t);
-                    w[i] = t;
-                    st[t] = true;
-                } else break;
+                ans[i] = first + (i - l);
+                if (i >= needAdd) {
+                    ans[i]++;
+                }
+                non_blocked.erase(ans[i]);
             }
+            if (ans[r] > n) {
+                continue;
+            }
+            non_blocked.erase(ans[r]);
+            for (int i = 0; i < l; i++) {
+                ans[i] = *non_blocked.begin();
+                non_blocked.erase(non_blocked.begin());
+            }
+            for (int i = r + 1; i < n; i++) {
+                ans[i] = *non_blocked.begin();
+                non_blocked.erase(non_blocked.begin());
+            }
+            for (int i : ans) {
+                cout << i << " ";
+            }
+            cout << "\n";
+            return;
         }
-        int cur = 1;
-        for (int i = 1; i <= n; i++)
-            if (!w[i]) {
-                while (st[cur]) cur++;
-                w[i] = cur;
-                st[cur] = true;
-            }
-        for (int i = 1; i <= n; i++) printf("%d ", w[i]);
-        puts("");
     }
+    cout << "-1\n";
 }
 
 int main() {
-    quick_read();
-    int TT;
-    scanf("%d", &TT);
-    while (TT--) {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr); cout.tie(nullptr);
+    int n;
+    cin >> n;
+    while (n--) {
         solve();
     }
-    return 0;
 }
