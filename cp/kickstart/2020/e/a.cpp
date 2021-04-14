@@ -25,8 +25,25 @@ void quick_read() {
     cout.tie(nullptr);
 }
 
-void solve() {
+const int N = 200010;
 
+int n;
+int w[N];
+int b[N];
+
+void solve() {
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) scanf("%d", &w[i]);
+    for (int i = 1; i < n; i++) b[i] = w[i] - w[i - 1];
+    b[n] = INF;
+    int res = 0, sum = 1;
+    for (int i = 2; i <= n; i++) {
+        if (b[i] != b[i - 1]) {
+            res = max(res, sum);
+            sum = 1;
+        } else sum++;
+    }
+    printf("%d\n", res + 1);
 }
 
 int main() {

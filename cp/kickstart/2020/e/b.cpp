@@ -25,8 +25,23 @@ void quick_read() {
     cout.tie(nullptr);
 }
 
-void solve() {
+const int N = 110;
 
+int n, a, b, c;
+int res[N];
+
+void solve() {
+    scanf("%d%d%d%d", &n, &a, &b, &c);
+    if (a - c + b - c + c > n) puts("IMPOSSIBLE");
+    else if (a - c + b - c + c < n && c == 1) puts("IMPOSSIBLE");
+    else {
+        for (int i = 0; i < a - c; i++) res[i] = n - (a - c) + i;
+        for (int i = 0; i < c; i++) res[i + a - c] = n;
+        for (int i = 0; i < n - (a + b - c); i++) res[i + a] = 1;
+        for (int i = 0; i < b - c; i++) res[i + n - b + c] = n - i - 1;
+        for (int i = 0; i < n; i++) printf("%d ", res[i]);
+        puts("");
+    }
 }
 
 int main() {

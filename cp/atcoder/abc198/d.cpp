@@ -18,13 +18,6 @@ const double eps = 1e-8;
 const int mod = 1e9 + 7;
 const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 
-const int N = 15;
-
-char str1[N], str2[N], str3[N];
-char mp[30];
-int cnt = 0;
-double w[N][N];
-
 void quick_read() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -32,24 +25,32 @@ void quick_read() {
 }
 
 void solve() {
-    mp.clear();
-    memset(mp, 0, sizeof mp);
-    cnt = 0;
-    scanf("%s%s%s", str1, str2, str3);
-    int m1 = strlen(str1), m2 = strlen(str2), m3 = strlen(str3);
-    for (int i = 0; i < m1; i++)
-        if (!mp[str1[i] - 'a']) mp[str1[i] - 'a'] = ++cnt;
-    for (int i = 0; i < m2; i++)
-        if (!mp[str2[i] - 'a']) mp[str2[i] - 'a'] = ++cnt;
-    for (int i = 0; i < m3; i++)
-        if (!mp[str3[i] - 'a']) mp[str3[i] - 'a'] = ++cnt;
-    for (int i = 0; i < max(m1, max(m2, m3)); i++) {
-        if (m1 >= i && m2 >= i && m3 >= i) {
-            for (int j = 0; j < 3; j++) a[i][]
-        }
+    map<char, int> mp;
+    string s1, s2, s3;
+    cin >> s1 >> s2 >> s3;
+    for (char c : s1) mp[c]++;
+    for (char c : s2) mp[c]++;
+    for (char c : s3) mp[c]++;
+    if (mp.size() > 10) {
+        cout << "UNSOLVABLE" << endl;
+        return;
     }
-        for (int j = 0; j < cnt; j++)
-
+    vector<int> p(10);
+    iota(p.begin(), p.end(), 0);
+    do {
+        string n1, n2, n3;
+        int cnt = 0;
+        for (auto& it : mp) it.y = p[cnt++];
+        for (char c : s1) n1 += mp[c] + '0';
+        for (char c : s2) n2 += mp[c] + '0';
+        for (char c : s3) n3 += mp[c] + '0';
+        LL a = stoll(n1), b = stoll(n2), c = stoll(n3);
+        if (n1[0] != '0' && n2[0] != '0' && n3[0] != '0' && a + b == c) {
+            cout << a << endl << b << endl << c << endl;
+            return;
+        }
+    } while (next_permutation(p.begin(), p.end()));
+    cout << "UNSOLVABLE" << endl;
 }
 
 int main() {

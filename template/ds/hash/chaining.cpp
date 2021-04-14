@@ -1,7 +1,11 @@
 const int N = 200003;
 
-// chaining
 int h[N], e[N], ne[N], idx;
+
+void init() {
+    memset(h, -1, sizeof h);
+    idx = 0;
+}
 
 void insert(int x) {
     int k = (x % N + N) % N;
@@ -14,17 +18,4 @@ bool find(int x) {
         if (e[i] == x)
             return true;
     return false;
-}
-
-// open accessing
-const int null = 0x3f3f3f3f;
-int h[N];
-
-int find(int x) {
-    int t = (x % N + N) % N;
-    while (h[t] != null && h[t] != x) {
-        t++;
-        if (t == N) t = 0;
-    }
-    return t;
 }

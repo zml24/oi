@@ -1,5 +1,9 @@
-int tt = 0;
+int tt;
 int stk[N];
+
+void init() {
+    tt = 0;
+}
 
 void push(int x) {
     stk[++tt] = x;

@@ -2,7 +2,7 @@ int n;
 int g[N][N]
 
 void init() {
-    memset(g, INF, sizeof g);
+    memset(g, 0x3f, sizeof g);
     for (int i = 1; i <= n; i++) g[i][i] = 0;
 }
 

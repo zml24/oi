@@ -12,8 +12,8 @@ void add(int a, int b, int c) {
     e[idx] = b, w[idx] = c, ne[idx] = h[a], h[a] = idx++;
 }
 
-int dijkstra(int S, int T) {
-    memset(dist, INF, sizeof dist);
+int dijkstra() {
+    memset(dist, 0x3f, sizeof dist);
     memset(st, 0, sizeof st);
     dist[S] = 0;
     priority_queue<PII, vector<PII>, greater<PII>> heap;
@@ -31,6 +31,6 @@ int dijkstra(int S, int T) {
             }
         }
     }
-    if (dist[T] > INF / 2) return -1;
-    else return dist[n];
+    if (dist[T] == INF) return -1;
+    else return dist[T];
 }

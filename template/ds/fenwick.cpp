@@ -1,3 +1,5 @@
+int tr[N];
+
 int lowbit(int x) {
     return x & -x;
 }
@@ -17,6 +19,10 @@ int pre_sum(int x) {
     return sum(tr1, x) * (x + 1) - sum(tr2, x);
 }
 
+void init() {
+    memset(tr, 0, sizeof tr);
+}
+
 // all-1 init 
 void init() {
     for (int i = 1; i <= n; i++) tr[i] = lowbit(i);
@@ -24,6 +30,7 @@ void init() {
 
 // O(n) init
 void init() {
+    memset(tr, 0, sizeof tr);
     for (int i = 1; i <= n; i++) {
         tr[i] += a[i];
         int j = i + lowbit(i);

@@ -5,7 +5,7 @@ struct Edge {
 int m;
 int dist[N], backup[N];
 
-int bellman_ford() {
+int bellman_ford(int k) {
     memset(dist, 0x3f, sizeof dist);
     dist[1] = 0;
     for (int i = 0; i < k; i++) {

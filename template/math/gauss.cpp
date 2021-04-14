@@ -1,36 +1,26 @@
-int gauss()
-{
+int n, m;
+double w[N][N];
+
+int gauss() {
     int c, r;
-    for (c = 0, r = 0; c < n; c ++ )
-    {
+    for (c = 0, r = 0; c < m; c++) {
         int t = r;
-        for (int i = r; i < n; i ++ )   // 找到绝对值最大的行
-            if (fabs(a[i][c]) > fabs(a[t][c]))
-                t = i;
-
-        if (fabs(a[t][c]) < eps) continue;
-
-        for (int i = c; i <= n; i ++ ) swap(a[t][i], a[r][i]);      // 将绝对值最大的行换到最顶端
-        for (int i = n; i >= c; i -- ) a[r][i] /= a[r][c];      // 将当前上的首位变成1
-        for (int i = r + 1; i < n; i ++ )       // 用当前行将下面所有的列消成0
-            if (fabs(a[i][c]) > eps)
-                for (int j = n; j >= c; j -- )
-                    a[i][j] -= a[r][j] * a[i][c];
-
-        r ++ ;
+        for (int i = r; i < n; i++)
+            if (fabs(w[i][c]) > fabs(w[t][c])) t = i;
+        if (fabs(w[t][c]) < eps) continue;
+        for (int i = c; i <= m; i++) swap(w[t][i], w[r][i]);
+        for (int i = m; i >= c; i--) w[r][i] /= w[r][c];
+        for (int i = r + 1; i < n; i++)
+            if (fabs(w[i][c]) > eps)
+                for (int j = m; j >= c; j--) w[i][j] -= w[r][j] * w[i][c]; // ^ for bool gauss
+        r++;
     }
-
-    if (r < n)
-    {
-        for (int i = r; i < n; i ++ )
-            if (fabs(a[i][n]) > eps)
-                return 2; // 无解
-        return 1; // 有无穷多组解
+    if (r < n) {
+        for (int i = r; i < n; i++)
+            if (fabs(w[i][n]) > eps) return 2; // no solutions
+        return 1; // infinitely many solutions
     }
-
-    for (int i = n - 1; i >= 0; i -- )
-        for (int j = i + 1; j < n; j ++ )
-            a[i][n] -= a[i][j] * a[j][n];
-
-    return 0; // 有唯一解
+    for (int i = n - 1; ~i; i--)
+        for (int j = i + 1; j < m; j++) w[i][n] -= w[i][j] * w[j][n]; // ^ for bool gauss
+    return 0;
 }
