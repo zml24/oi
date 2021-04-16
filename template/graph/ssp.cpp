@@ -1,11 +1,26 @@
+int n, m, S, T;
+int h[N], e[M], f[M], w[M], ne[M], idx;
+int q[N], d[N], pre[N], incf[N];
+bool st[N];
+
+void init() {
+    memset(h, -1, sizeof h);
+    idx = 0;
+}
+
+void add(int a, int b, int c, int d) {
+    e[idx] = b, f[idx] = c, w[idx] = d, ne[idx] = h[a], h[a] = idx++;
+    e[idx] = a, f[idx] = 0, w[idx] = -d, ne[idx] = h[b], h[b] = idx++;
+}
+
 bool spfa() {
     memset(d, 0x3f, sizeof d);
     memset(incf, 0, sizeof incf);
-    queue<int> q;
-    q.push(S), d[S] = 0, incf[S] = INF;
-    while (hh <= tt) {
-        int t = q.front();
-        q.pop();
+    int hh = 0, tt = 0;
+    q[tt++] = S, d[S] = 0, incf[S] = INF;
+    while (hh != tt) {
+        int t = q[hh++];
+        if (hh == N) hh = 0;
         st[t] = false;
         for (int i = h[t]; ~i; i = ne[i]) {
             int j = e[i];
@@ -14,7 +29,8 @@ bool spfa() {
                 pre[j] = i;
                 incf[j] = min(f[i], incf[t]);
                 if (!st[j]) {
-                    q.push(j);
+                    q[tt++] = j;
+                    if (tt == N) tt = 0;
                     st[j] = true;
                 }
             }

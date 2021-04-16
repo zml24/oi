@@ -23,6 +23,6 @@ int dijkstra() {
         st[t] = true;
         for (int j = 1; j <= n; j++) dist[j] = min(dist[j], dist[t] + g[t][j]);
     }
-    if (dist[T] > INF / 2) return -1;
+    if (dist[T] == INF) return -1;
     else return dist[T];
 }

@@ -14,10 +14,8 @@ void add(int a, int b, int c) {
 
 bool bfs() {
     memset(d, -1, sizeof d);
-    d[S] = 0;
     int hh = 0, tt = -1;
-    q[++tt] = S;
-    cur[S] = h[S];
+    q[++tt] = S, d[S] = 0, cur[S] = h[S];
     while (hh <= tt) {
         int t = q[hh++];
         for (int i = h[t]; i != -1; i = ne[i]) {

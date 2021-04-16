@@ -1,3 +1,17 @@
+int n, m, S, T;
+int h[N], e[M], f[M], ne[M], idx;
+int q[N], d[N], pre[N];
+
+void init() {
+    memset(h, -1, sizeof h);
+    idx = 0;
+}
+
+void add(int a, int b, int c) {
+    e[idx] = b, f[idx] = c, ne[idx] = h[a], h[a] = idx++;
+    e[idx] = a, f[idx] = 0, ne[idx] = h[b], h[b] = idx++;
+}
+
 bool bfs() {
     memset(st, 0, sizeof st);
     int hh = 0, tt = -1;

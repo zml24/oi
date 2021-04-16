@@ -1,7 +1,7 @@
 struct Edge {
     int a, b, w;
 
-    bool operator< (const Edge& e) const {
+    bool operator< (const Edge &e) const {
         return w < e.w;
     }
 }edges[M];
