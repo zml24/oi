@@ -25,37 +25,24 @@ void quick_read() {
     cout.tie(nullptr);
 }
 
-const int N = 310;
-
-int n, m, s;
-set<vector<int>, double> mp;
-set<vector<int>, int> st;
-vector<int> target;
-
-double dfs(vector<int> &ans) {
-    if (st.count(ans)) return mp[ans];
-    duoble res = 0;
-    for (int i = 0; i < m; i++) {
-
-    }
-    res = 
+bool is_prime(int n) {
+    if (n < 2) return false;
+    for (int i = 2; i <= n / i; i++)
+        if (n % i == 0) return false;
+    return true;
 }
 
 void solve() {
-    scanf("%d%d%d", &n, &m, &s);
-    mp.clear();
-    st.clear();
-    target.clear();
-    for (int i = 0; i < m - k; i++) target.push_back(0);
-    for (int i = 0; i < k; i++) {
-        int x;
-        scanf("%d", &x);
-        target.push_back(x);
-    }
-    mp[target] = 0;
-    st[target] = 0;
-    vector<int> res(m);
-    dfs(res);
+    LL n;
+    scanf("%lld", &n);
+    vector<int> primes;
+    for (int i = max(2, (int)sqrt(n) - 282 * 2); i <= sqrt(n) + 282; i++)
+        if (is_prime(i)) primes.push_back(i);
+    for (int i = primes.size() - 1; i; i--)
+        if ((LL)primes[i] * primes[i - 1] <= n) {
+            printf("%lld\n", (LL)primes[i] * primes[i - 1]);
+            break;
+        }
 }
 
 int main() {

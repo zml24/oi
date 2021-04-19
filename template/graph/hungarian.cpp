@@ -13,7 +13,7 @@ void add(int a, int b) {
 }
 
 bool find(int x) {
-    for (int i = h[x]; i != -1; i = ne[i]) {
+    for (int i = h[x]; ~i; i = ne[i]) {
         int j = e[i];
         if (!st[j]) {
             st[j] = true;
@@ -28,10 +28,9 @@ bool find(int x) {
 
 int matching() {
     memset(match, 0, sizeof match);
-    memset(st, 0, sizeof st);
     int res = 0;
     for (int i = 1; i <= n; i++) {
-        memset(st, false, sizeof st);
+        memset(st, 0, sizeof st);
         if (find(i)) res++;
     }
     return res;

@@ -1,6 +1,7 @@
 struct Node {
     int l, r;
-    int sum, add;
+    int add;
+    LL sum;
 }tr[N << 2];
 
 void pushup(Node &u, Node &l, Node &r) {
@@ -25,7 +26,7 @@ void pushdown(int u) {
 }
 
 void build(int u, int l, int r) {
-    if (l == r) tr[u] = {l, r, w[r]}; // init
+    if (l == r) tr[u] = {l, r, 0, w[r]}; // init
     else {
         tr[u] = {l, r};
         int mid = l + r >> 1;

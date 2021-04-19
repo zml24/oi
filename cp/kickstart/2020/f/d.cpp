@@ -27,22 +27,25 @@ void quick_read() {
 
 const int N = 310;
 
-int n, m, s;
+int n, m, k;
 set<vector<int>, double> mp;
 set<vector<int>, int> st;
 vector<int> target;
 
-double dfs(vector<int> &ans) {
+double dfs(vector<int> ans) {
     if (st.count(ans)) return mp[ans];
-    duoble res = 0;
+    duoble res = 0, pos = 0;
     for (int i = 0; i < m; i++) {
-
+        int j = i + 1;
+        while (j < m && ans[j - 1] == ans[j]) j++;
+        
+        i = j;
     }
-    res = 
+    res = res / pos + 
 }
 
 void solve() {
-    scanf("%d%d%d", &n, &m, &s);
+    scanf("%d%d%d", &n, &m, &k);
     mp.clear();
     st.clear();
     target.clear();
@@ -55,7 +58,7 @@ void solve() {
     mp[target] = 0;
     st[target] = 0;
     vector<int> res(m);
-    dfs(res);
+    printf("%d\n", dfs(res));
 }
 
 int main() {

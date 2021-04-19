@@ -25,37 +25,22 @@ void quick_read() {
     cout.tie(nullptr);
 }
 
-const int N = 310;
+const int N = 100010;
 
-int n, m, s;
-set<vector<int>, double> mp;
-set<vector<int>, int> st;
-vector<int> target;
-
-double dfs(vector<int> &ans) {
-    if (st.count(ans)) return mp[ans];
-    duoble res = 0;
-    for (int i = 0; i < m; i++) {
-
-    }
-    res = 
-}
+int n;
+char str[N];
+int w[N];
+int q[N];
 
 void solve() {
-    scanf("%d%d%d", &n, &m, &s);
-    mp.clear();
-    st.clear();
-    target.clear();
-    for (int i = 0; i < m - k; i++) target.push_back(0);
-    for (int i = 0; i < k; i++) {
-        int x;
-        scanf("%d", &x);
-        target.push_back(x);
+    scanf("%d%s", &n, str);
+    int num = 1;
+    printf("%d ", num);
+    for (int i = 1; i < n; i++) {
+        if (str[i - 1] < str[i]) num++, printf("%d ", num);
+        else num = 1, printf("%d ", 1);
     }
-    mp[target] = 0;
-    st[target] = 0;
-    vector<int> res(m);
-    dfs(res);
+    puts("");
 }
 
 int main() {
