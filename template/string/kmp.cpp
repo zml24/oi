@@ -1,5 +1,10 @@
-char s[n + 1], p[m + 1]; // index from 1
+int n, m;
+char s[N], p[M]; // index from 1
 int ne[N];
+
+void init() {
+    memset(ne, 0, sizeof ne);
+}
 
 void build() {
     for (int i = 2, j = 0; i <= m; i++) {

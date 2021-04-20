@@ -25,23 +25,41 @@ void quick_read() {
     cout.tie(nullptr);
 }
 
-const int N = 100010;
+const int N = 300010;
 
 int n;
 int w[N];
-int b[N], f[N][10];
+int b[N], l[N], r[N];
 
 void solve() {
-    scanf("%d", &n);
     memset(b, 0, sizeof b);
-    memset(f, 0, sizeof f);
-    for (int i = 0; i < n; i++) scanf("%d", &w[i]);
-    int res = 0, num = 2;
-    for (int i = 2; i < n; i++) {
-        if (w[i] - w[i - 1] == w[i - 1] - w[i - 2]) num++;
-        else res = max(res, num), num = 2;
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++) scanf("%d", &w[i]);
+    if (n <= 3) {
+        printf("%d\n", n);
+        return;
     }
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i < n; i++) b[i] = w[i + 1] - w[i];
+    l[1] = 1, r[n - 1] = 1;
+    for (int i = 2; i < n; i++) {
+        if (b[i] == b[i - 1]) l[i] = l[i - 1] + 1;
+        else l[i] = 1;
+    }
+    for (int i = n - 2; i; i--) {
+        if (b[i] == b[i + 1]) r[i] = r[i + 1] + 1;
+        else r[i] = 1;
+    }
+    int res = max(l[n - 1], r[1]);
+    for (int i = 2; i < n - 1; i++) {
+        res = max({res, l[i] + 1, r[i] + 1});
+        if (i + 2 < n && b[i + 1] + b[i + 2] == 2 * b[i]) res = max(res, l[i] + 2);
+        if (i - 2 > 0 && b[i - 1] + b[i - 2] == 2 * b[i]) res = max(res, r[i] + 2);
+        if (i - 2 > 0 && i + 1 < n && b[i - 1] + b[i] == 2 * b[i - 2] && b[i - 2] == b[i + 1])
+            res = max(res, l[i - 2] + r[i + 1] + 2);
+        if (i - 1 > 0 && i + 2 < n && b[i + 1] + b[i] == 2 * b[i - 1] && b[i - 1] == b[i + 2])
+            res = max(res, l[i - 1] + r[i + 2] + 2);
+    }
+    printf("%d\n", res + 1);
 }
 
 int main() {
