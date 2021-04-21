@@ -25,11 +25,30 @@ void quick_read() {
     cout.tie(nullptr);
 }
 
+const int N = 100010;
+
 int n;
-int 
 
 void solve() {
-
+    scanf("%d", &n);
+    LL sum = 0;
+    priority_queue<PII> pq;
+    for (int i = 0; i < n; i++) {
+        int e, r;
+        scanf("%d%d", &e, &r);
+        sum += e;
+        pq.push({e + r, e});
+    }
+    while (pq.size()) {
+        if (pq.top().x <= sum) break;
+        else {
+            PII t = pq.top();
+            pq.pop();
+            sum -= t.y;
+        }
+    }
+    if (pq.size()) printf("%d INDEFINITELY\n", n - pq.size());
+    else printf("")
 }
 
 int main() {
