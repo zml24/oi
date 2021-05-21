@@ -1,6 +1,6 @@
 int n;
 int w[N];
-int f[N][N];
+int f[N][M];
 
 void init(int l, int r) {
     for (int j = 0; j < M; j++)

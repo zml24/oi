@@ -8,7 +8,6 @@ using namespace std;
 
 typedef long long LL;
 typedef pair<int, int> PII;
-typedef pair<int, LL> PIL;
 typedef pair<double, double> PDD;
 
 const int INF = 0x3f3f3f3f;
@@ -19,44 +18,23 @@ const double eps = 1e-8;
 const int mod = 1e9 + 7;
 const int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
 
-void quick_read() {
+static auto _ = []() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+    cout.precision(20);
     cout.tie(nullptr);
-}
-
-const int N = 100010;
-
-int n;
+    return 0;
+}();
 
 void solve() {
-    scanf("%d", &n);
-    LL sum = 0;
-    priority_queue<PII> pq;
-    for (int i = 0; i < n; i++) {
-        int e, r;
-        scanf("%d%d", &e, &r);
-        sum += e;
-        pq.push({e + r, e});
-    }
-    while (pq.size()) {
-        if (pq.top().x <= sum) break;
-        else {
-            PII t = pq.top();
-            pq.pop();
-            sum -= t.y;
-        }
-    }
-    if (pq.size()) printf("%d INDEFINITELY\n", n - pq.size());
-    else printf("")
+    
 }
 
 int main() {
-    quick_read();
     int TT;
-    scanf("%d", &TT);
+    cin >> TT;
     for (int ca = 1; ca <= TT; ca++) {
-        printf("Case #%d: ", ca);
+        cout << "Case #" << ca << ": ";
         solve();
     }
     return 0;

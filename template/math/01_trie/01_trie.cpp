@@ -1,4 +1,4 @@
-int tr[N][2], idx;
+int tr[N * 31][2], idx;
 
 void init() {
     memset(tr, 0, sizeof tr);
