@@ -50,3 +50,20 @@ void EK(int &flow, int &cost) {
         }
     }
 }
+
+int min_cost() {
+    int flow, cost;
+    EK(flow, cost);
+    return cost;
+}
+
+int max_cost() {
+    int flow, cost;
+    for (int i = 0; i < idx; i += 2) {
+        f[i] += f[i ^ 1], f[i ^ 1] = 0;
+        w[i] = -w[i], w[i ^ 1] = -w[i ^ 1];
+    }
+    EK(flow, cost);
+    return -cost;
+}
+

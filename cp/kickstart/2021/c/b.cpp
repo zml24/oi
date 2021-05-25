@@ -2,6 +2,7 @@
 
 #define x first
 #define y second
+#define all(x) (x).begin(), (x).end()
 #define endl '\n'
 
 using namespace std;
@@ -26,34 +27,18 @@ static auto _ = []() {
     return 0;
 }();
 
-const int N = 100010;
-
-int a[N], b[N];
+LL n;
 
 void solve() {
-    int n;
     cin >> n;
-    LL sum = 0;
-    for (int i = 0; i < n; i++) cin >> a[i] >> b[i], sum += a[i];
-    int cnt = 0, cur = 0;
-    LL ans = sum, res = sum;
-    priority_queue<PII> pq;
-    for (int i = 0; i < n; i++) {
-        ans += a[i];
-        pq.push({a[i] + b[i], a[i]});
-        while (pq.size()) {
-            PII t = pq.top();
-            if (t.x <= sum) break;
-            ans -= 2 * t.y;
-            sum -= t.y;
-            cur++;
-            pq.pop();
+    LL res = 0;
+    for (LL i = 1; i * i <= n; i++) {
+        if (n % i == 0) {
+            if (i & 1) res++;
+            if (i * i != n && (n / i - 1) % 2 == 0) res++;
         }
-        if (ans > res) res = ans, cnt = cur;
-        if (ans == res) cnt = min(cnt, cur);
     }
-    if (pq.size()) cout << cur << " INDEFINITELY" << endl;
-    else cout << cnt << " " << res << endl;
+    cout << res << endl;
 }
 
 int main() {

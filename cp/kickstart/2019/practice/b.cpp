@@ -2,6 +2,7 @@
 
 #define x first
 #define y second
+#define all(x) (x).begin(), (x).end()
 #define endl '\n'
 
 using namespace std;
@@ -26,34 +27,24 @@ static auto _ = []() {
     return 0;
 }();
 
-const int N = 100010;
+const int N = 5000010;
 
-int a[N], b[N];
+int n;
+string str;
+int w[N], s[N];
 
 void solve() {
-    int n;
-    cin >> n;
-    LL sum = 0;
-    for (int i = 0; i < n; i++) cin >> a[i] >> b[i], sum += a[i];
-    int cnt = 0, cur = 0;
-    LL ans = sum, res = sum;
-    priority_queue<PII> pq;
+    cin >> n >> str;
     for (int i = 0; i < n; i++) {
-        ans += a[i];
-        pq.push({a[i] + b[i], a[i]});
-        while (pq.size()) {
-            PII t = pq.top();
-            if (t.x <= sum) break;
-            ans -= 2 * t.y;
-            sum -= t.y;
-            cur++;
-            pq.pop();
-        }
-        if (ans > res) res = ans, cnt = cur;
-        if (ans == res) cnt = min(cnt, cur);
+        w[i] = str[i] - '0';
+        s[i + 1] = s[i] + w[i];
     }
-    if (pq.size()) cout << cur << " INDEFINITELY" << endl;
-    else cout << cnt << " " << res << endl;
+    int res = 0;
+    for (int i = 1; i + (n - 1) / 2 <= n; i++) {
+        int j = i + (n - 1) / 2;
+        res = max(res, s[j] - s[i - 1]);
+    }
+    cout << res << endl;
 }
 
 int main() {

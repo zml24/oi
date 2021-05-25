@@ -26,8 +26,40 @@ static auto _ = []() {
     return 0;
 }();
 
-void solve() {
-    
+bool solve() {
+    int n, a, b, c;
+    cin >> n >> a >> b >> c;
+    int m = n - (a + b - c);
+    if (m < 0) return false;
+    if (n == 1) {
+        if (a == 1 && b == 1 && c == 1) cout << 1 << endl;
+        else return false;
+    } else if (n == 2) {
+        if (a == 2 && b == 1 && c == 1) cout << 1 << " " << 2 << endl;
+        else if (a == 2 && b == 2 && c == 2) cout << 2 << " " << 2 << endl;
+        else if (a == 1 && b == 2 && c == 1) cout << 2 << " " << 1 << endl;
+        else return false; 
+    } else {
+        int l = a - c, mid = c, r = b - c;
+        if (l + mid + r <= 1 && m != 0) return false;
+        int flag = 0;
+        if (l > 0) flag = 1;
+        if (mid > 1) flag = 2;
+        while (l--) cout << n - 1 << " ";
+        if (flag == 1)
+            while (m--) cout << n - 2 << " ";
+        if (flag == 2) {
+            cout << n << " ";
+            mid--;
+            while (m--) cout << n - 2 << " ";
+        }
+        while (mid--) cout << n << " ";
+        if (!flag)
+            while (m--) cout << n - 2 << " ";
+        while (r--) cout << n - 1 << " ";
+        cout << endl;
+    }
+    return true;
 }
 
 int main() {
@@ -35,7 +67,7 @@ int main() {
     cin >> TT;
     for (int ca = 1; ca <= TT; ca++) {
         cout << "Case #" << ca << ": ";
-        solve();
+        if (!solve()) cout << "IMPOSSIBLE" << endl;
     }
     return 0;
 }

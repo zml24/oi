@@ -2,6 +2,7 @@
 
 #define x first
 #define y second
+#define all(x) (x).begin(), (x).end()
 #define endl '\n'
 
 using namespace std;
@@ -28,32 +29,23 @@ static auto _ = []() {
 
 const int N = 100010;
 
-int a[N], b[N];
+int n, m;
+int w[N];
 
 void solve() {
-    int n;
-    cin >> n;
-    LL sum = 0;
-    for (int i = 0; i < n; i++) cin >> a[i] >> b[i], sum += a[i];
-    int cnt = 0, cur = 0;
-    LL ans = sum, res = sum;
-    priority_queue<PII> pq;
-    for (int i = 0; i < n; i++) {
-        ans += a[i];
-        pq.push({a[i] + b[i], a[i]});
-        while (pq.size()) {
-            PII t = pq.top();
-            if (t.x <= sum) break;
-            ans -= 2 * t.y;
-            sum -= t.y;
-            cur++;
-            pq.pop();
-        }
-        if (ans > res) res = ans, cnt = cur;
-        if (ans == res) cnt = min(cnt, cur);
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) cin >> w[i];
+    sort(w, w + n);
+    int sum = 0, res;
+    for (int i = 0; i < m; i++) sum += w[m - 1] - w[i];
+    res = sum;
+    for (int i = 1; i + m <= n; i++) {
+        int r = i + m - 1;
+        sum += (w[r] - w[r - 1]) * (m - 1);
+        sum -= w[r - 1] - w[i - 1];
+        res = min(res, sum);
     }
-    if (pq.size()) cout << cur << " INDEFINITELY" << endl;
-    else cout << cnt << " " << res << endl;
+    cout << res << endl;
 }
 
 int main() {

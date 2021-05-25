@@ -2,6 +2,7 @@
 
 #define x first
 #define y second
+#define all(x) (x).begin(), (x).end()
 #define endl '\n'
 
 using namespace std;
@@ -26,34 +27,32 @@ static auto _ = []() {
     return 0;
 }();
 
-const int N = 100010;
+int n, m;
+string str;
+string ans;
+int res;
 
-int a[N], b[N];
+void dfs(int u) {
+    if (u == n) {
+        for (int i = 0; i < n / 2; i++)
+            if (ans[i] != ans[n - i - 1]) return;
+        bool flag = false;
+        if (ans < str) res++;
+        return;
+    }
+    for (int i = 0; i < m; i++) {
+        ans += ('a' + i);
+        dfs(u + 1);
+        ans.pop_back();
+    }
+}
 
 void solve() {
-    int n;
-    cin >> n;
-    LL sum = 0;
-    for (int i = 0; i < n; i++) cin >> a[i] >> b[i], sum += a[i];
-    int cnt = 0, cur = 0;
-    LL ans = sum, res = sum;
-    priority_queue<PII> pq;
-    for (int i = 0; i < n; i++) {
-        ans += a[i];
-        pq.push({a[i] + b[i], a[i]});
-        while (pq.size()) {
-            PII t = pq.top();
-            if (t.x <= sum) break;
-            ans -= 2 * t.y;
-            sum -= t.y;
-            cur++;
-            pq.pop();
-        }
-        if (ans > res) res = ans, cnt = cur;
-        if (ans == res) cnt = min(cnt, cur);
-    }
-    if (pq.size()) cout << cur << " INDEFINITELY" << endl;
-    else cout << cnt << " " << res << endl;
+    cin >> n >> m >> str;
+    ans = "";
+    res = 0;
+    dfs(0);
+    cout << res << endl;
 }
 
 int main() {
