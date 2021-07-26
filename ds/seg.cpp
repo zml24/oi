@@ -18,10 +18,10 @@ void eval(Node &u, int add) {
 }
 
 void pushdown(int u) {
-    if (u.add) {
-        eval(tr[u << 1], u.add);
-        eval(tr[u << 1 | 1], u.add);
-        u.add = 0;
+    if (tr[u].add) {
+        eval(tr[u << 1], tr[u].add);
+        eval(tr[u << 1 | 1], tr[u].add);
+        tr[u].add = 0;
     }
 }
 

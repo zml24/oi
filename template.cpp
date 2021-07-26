@@ -16,14 +16,14 @@ const int mod = 1e9 + 7;
 const int dx[4] = {1, 0, -1, 0}, dy[4] = {0, 1, 0, -1};
 
 static auto _ = []() {
-#ifdef LOCAL
-    freopen("std.in", "r", stdin);
-#endif
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
 };
 
 int main() {
+#ifdef LOCAL
+    freopen("std.in", "r", stdin);
+#endif
     return 0;
 }
