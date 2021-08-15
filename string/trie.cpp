@@ -6,7 +6,7 @@ void init() {
     idx = 0;
 }
 
-void insert(char *str) {
+void insert(char str[]) {
     int p = 0;
     for (int i = 0; str[i]; i++) {
         int u = str[i] - 'a';
@@ -16,7 +16,7 @@ void insert(char *str) {
     cnt[p]++;
 }
 
-int query(char *str) {
+int query(char str[]) {
     int p = 0;
     for (int i = 0; str[i]; i++) {
         int u = str[i] - 'a';

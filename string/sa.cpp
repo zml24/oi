@@ -1,15 +1,15 @@
 // 1-index
 int n, m;
-char str[N];
+char s[N];
 int sa[N], x[N], y[N], c[N], rk[N], height[N];
 
 void init() {
-    m = 122;
+    n = strlen(s + 1), m = 122;
     for (int i = 1; i <= m; i++) c[i] = 0;
 }
 
 void get_sa() {
-    for (int i = 1; i <= n; i++) c[x[i] = str[i]]++;
+    for (int i = 1; i <= n; i++) c[x[i] = s[i]]++;
     for (int i = 2; i <= m; i++) c[i] += c[i - 1];
     for (int i = n; i; i--) sa[c[x[i]]--] = i;
     for (int k = 1; k <= n; k <<= 1) {
@@ -36,7 +36,7 @@ void get_height() {
         if (rk[i] == 1) continue;
         if (k) k--;
         int j = sa[rk[i] - 1];
-        while (i + k <= n && j + k <= n && str[i + k] == str[j + k]) k++;
+        while (i + k <= n && j + k <= n && s[i + k] == s[j + k]) k++;
         height[rk[i]] = k;
     }
 }

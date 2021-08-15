@@ -3,8 +3,7 @@ char s[N], p[M];
 int ne[M];
 
 void init() {
-    ne[0] = -1;
-    for (int i = 1, j = -1; i < m; i++) {
+    for (int i = 1, j = ne[0] = -1; i < m; i++) {
         while (~j && p[i] != p[j + 1]) j = ne[j];
         if (p[i] == p[j + 1]) j++;
         ne[i] = j;

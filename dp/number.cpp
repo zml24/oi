@@ -21,7 +21,7 @@ int dp(int n) {
     int res = 0, last = 0;
     for (int i = nums.size() - 1; ~i; i--) {
         int x = nums[i];
-        for (int j = 0; j <= 9; j++)
+        for (int j = 0; j < x; j++)
             if (j != 8) res += f[i + 1][j];
         if (x == 8) break;
         last = x;
