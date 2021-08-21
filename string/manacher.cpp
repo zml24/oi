@@ -1,3 +1,9 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 2000010;
+
 int n;
 char a[N], b[N];
 int p[N];
@@ -24,4 +30,11 @@ int manacher() {
         }
     }
     return res;
+}
+
+int main() {
+    scanf("%s", a);
+    init();
+    printf("%d\n", manacher());
+    return 0;
 }

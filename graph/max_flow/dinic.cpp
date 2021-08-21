@@ -1,3 +1,10 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 110, M = 2010;
+const int INF = 0x3f3f3f3f;
+
 int n, m, S, T;
 int h[N], e[M], f[M], ne[M], idx;
 int q[N], d[N], cur[N];
@@ -56,4 +63,16 @@ int dinic() {
 void print() {
     for (int i = 0; i < idx; i++)
         if (e[i] > m && e[i] <= n && !f[i]) printf("%d %d\n", e[i ^ 1], e[i]);
+}
+
+int main() {
+    init();
+    scanf("%d%d%d%d", &n, &m, &S, &T);
+    while (m--) {
+        int a, b, c;
+        scanf("%d%d%d", &a, &b, &c);
+        add(a, b, c);
+    }
+    printf("%d\n", dinic());
+    return 0;
 }

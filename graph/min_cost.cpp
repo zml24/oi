@@ -1,3 +1,10 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 5010, M = 100010;
+const int INF = 0x3f3f3f3f;
+
 int n, m, S, T;
 int h[N], e[M], f[M], w[M], ne[M], idx;
 int q[N], d[N], pre[N], incf[N];
@@ -67,3 +74,16 @@ int max_cost() {
     return -cost;
 }
 
+int main() {
+    init();
+    scanf("%d%d%d%d", &n, &m, &S, &T);
+    while (m--) {
+        int a, b, c, d;
+        scanf("%d%d%d%d", &a, &b, &c, &d);
+        add(a, b, c, d);
+    }
+    int flow, cost;
+    EK(flow, cost);
+    printf("%d %d\n", flow, cost);
+    return 0;
+}

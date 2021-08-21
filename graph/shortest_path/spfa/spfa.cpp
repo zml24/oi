@@ -7,7 +7,7 @@ const int INF = 0x3f3f3f3f;
 
 int n, m, S, T;
 int h[N], e[M], w[M], ne[M], idx;
-int dist[N];
+int q[N], dist[N];
 bool st[N];
 
 void init() {
@@ -22,20 +22,22 @@ void add(int a, int b, int c) {
 void spfa() {
     memset(dist, 0x3f, sizeof dist);
     memset(st, 0, sizeof st);
-    dist[S] = 0;
-    deque<int> q;
-    q.push_back(S);
-    while (q.size()) {
-        int t = q.front();
-        q.pop_front();
+    int hh = 0, tt = 0;
+    q[tt++] = S, dist[S] = 0;
+    while (hh != tt) {
+        int t = q[hh++];
+        if (hh == N) hh = 0;
         st[t] = false;
         for (int i = h[t]; i != -1; i = ne[i]) {
             int j = e[i];
             if (dist[j] > dist[t] + w[i]) {
                 dist[j] = dist[t] + w[i];
+                // finding negative cycle
+                // cnt[j] = cnt[t] + 1;
+                // if (cnt[j] >= j) return true;
                 if (!st[j]) {
-                    if (q.empty() || dist[q.front()] < dist[j]) q.push_back(j);
-                    else q.push_front(j);
+                    q[tt++] = j;
+                    if (tt == N) tt = 0;
                     st[j] = true;
                 }
             }

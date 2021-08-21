@@ -1,6 +1,14 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 55, M = 2010;
+const int INF = 0x3f3f3f3f;
+
 int n, m, S, T;
 int h[N], e[M], f[M], ne[M], idx;
 int q[N], d[N], pre[N];
+bool st[N];
 
 void init() {
     memset(h, -1, sizeof h);
@@ -40,4 +48,16 @@ int EK() {
             f[pre[i]] -= d[T], f[pre[i] ^ 1] += d[T];
     }
     return res;
+}
+
+int main() {
+    init();
+    scanf("%d%d%d%d", &n, &m, &S, &T);
+    while (m--) {
+        int a, b, c;
+        scanf("%d%d%d", &a, &b, &c);
+        add(a, b, c);
+    }
+    printf("%d\n", EK());
+    return 0;
 }

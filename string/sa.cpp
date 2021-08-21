@@ -1,6 +1,11 @@
-// 1-index
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 100010;
+
 int n, m;
-char s[N];
+char s[N]; // 1-index
 int sa[N], x[N], y[N], c[N], rk[N], height[N];
 
 void init() {
@@ -39,4 +44,15 @@ void get_height() {
         while (i + k <= n && j + k <= n && s[i + k] == s[j + k]) k++;
         height[rk[i]] = k;
     }
+}
+
+int main() {
+    scanf("%s", s + 1);
+    init();
+    get_sa();
+    get_height();
+    for (int i = 1; i <= n; i++) printf("%d ", sa[i]);
+    puts("");
+    for (int i = 1; i <= n; i++) printf("%d ", height[i]);
+    return 0;
 }

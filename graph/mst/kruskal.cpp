@@ -1,6 +1,11 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 100010, M = 200010;
+
 struct Edge {
     int a, b, w;
-
     bool operator< (const Edge &e) const {
         return w < e.w;
     }
@@ -10,7 +15,7 @@ int n, m;
 int p[N];
 
 void init() {
-    for (int i = 1; i <= n; i++) p[i] = i, sz[i] = 1;
+    for (int i = 1; i <= n; i++) p[i] = i;
 }
 
 int find(int x) {
@@ -18,24 +23,24 @@ int find(int x) {
     return p[x];
 }
 
-bool merge(int a, int b) {
-    int pa = find(a), pb = find(b);
-    if (pa != pb) {
-        if (sz[a] < sz[b]) swap(a, b);
-        p[pb] = pa;
-        sz[pa] += pb;
-        return true;
-    }
-    return false;
-}
-
-int kruskal() {
-    sort(edges, edges + m, cmp);
+void kruskal() {
+    sort(edges, edges + m);
     int res = 0, cnt = 0;
     for (int i = 0; i < m; i++) {
-        int a = edges[i].a, b = edges[i].b, w = edges[i].w;
-        if (merge(a, b)) res += w, cnt++;
+        int a = edges[i].a, b = edges[i].b;
+        if (find(a) != find(b)) {
+            p[find(a)] = find(b);
+            res += edges[i].w, cnt++;
+        }
     }
-    if (cnt < n - 1) return INF;
-    return res;
+    if (cnt < n - 1) puts("impossible");
+    else printf("%d\n", res);
+}
+
+int main() {
+    scanf("%d%d", &n, &m);
+    for (int i = 0; i < m; i++) scanf("%d%d%d", &edges[i].a, &edges[i].b, &edges[i].w);
+    init();
+    kruskal(); 
+    return 0;
 }
