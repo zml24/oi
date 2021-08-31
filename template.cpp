@@ -7,7 +7,6 @@ using namespace std;
 
 typedef long long LL;
 typedef pair<int, int> PII;
-typedef pair<LL, LL> PLL;
 
 const int INF = 0x3f3f3f3f;
 const int mod = 1e9 + 7;

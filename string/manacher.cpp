@@ -24,7 +24,7 @@ int manacher() {
         else p[i] = 1;
         while (b[i - p[i]] == b[i + p[i]]) p[i]++;
         res = max(res, p[i] - 1);
-        if (i + p[i] > mr) {
+        if (mr < i + p[i]) {
             mr = i + p[i];
             mid = i;
         }

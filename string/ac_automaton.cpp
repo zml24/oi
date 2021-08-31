@@ -1,3 +1,10 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+
+char str[N];
 int tr[N][26], cnt[N], idx;
 int q[N], ne[N];
 
@@ -8,7 +15,7 @@ void init() {
     idx = 0;
 }
 
-void insert(char *str) {
+void insert() {
     int p = 0;
     for (int i = 0; str[i]; i++) {
         int t = str[i] - 'a';

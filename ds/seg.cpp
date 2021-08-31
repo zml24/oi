@@ -60,12 +60,14 @@ void modify(int u, int l, int r, int d) {
 
 Node query(int u, int l, int r) {
     if (tr[u].l >= l && tr[u].r <= r) return tr[u];
-    pushdown(u); // for range update
-    int mid = tr[u].l + tr[u].r >> 1;
-    if (r <= mid) return query(u << 1, l, r);
-    if (l > mid) return query(u << 1 | 1, l, r);
-    auto lc = query(u << 1, l, r), rc = query(u << 1 | 1, l, r);
-    Node res;
-    pushup(res, lc, rc);
-    return res;
+    else {
+        pushdown(u); // for range update
+        int mid = tr[u].l + tr[u].r >> 1;
+        if (r <= mid) return query(u << 1, l, r);
+        if (l > mid) return query(u << 1 | 1, l, r);
+        auto lc = query(u << 1, l, r), rc = query(u << 1 | 1, l, r);
+        Node res;
+        pushup(res, lc, rc);
+        return res;
+    }
 }
