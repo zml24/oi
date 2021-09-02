@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int N = 55, M = 2010;
+const int N = 1010, M = 20010;
 const int INF = 0x3f3f3f3f;
 
 int n, m, S, T;

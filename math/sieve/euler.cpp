@@ -1,11 +1,16 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long LL;
+
+const int N = 1000010;
+
 int primes[N], cnt;
 int phi[N];
 bool st[N];
 
-LL get_eulers(int n) {
-    memset(primes, 0, sizeof primes);
-    memset(st, 0, sizeof st);
-    cnt = 0;
+LL init(int n) {
     phi[1] = 1;
     for (int i = 2; i <= n; i++) {
         if (!st[i]) {
@@ -24,4 +29,11 @@ LL get_eulers(int n) {
     LL res = 0;
     for (int i = 1; i <= n; i++) res += phi[i];
     return res;
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    printf("%lld\n", init(n));
+    return 0;
 }

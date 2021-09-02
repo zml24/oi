@@ -18,7 +18,7 @@ void init(int n) {
 int main() {
     int n;
     scanf("%d", &n);
-    get_primes(n);
+    init(n);
     printf("%d\n", cnt);
     return 0;
 }

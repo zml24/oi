@@ -1,9 +1,16 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 100010, M = 200010;
+
 int n, m;
 int h[N], e[M], d[N], ne[M], idx;
 int q[N];
 
 void init() {
     memset(h, -1, sizeof h);
+    memset(d, 0, sizeof d);
     idx = 0;
 }
 
@@ -26,5 +33,19 @@ bool topsort() {
 }
 
 void print() {
-    for (int i = 0; i < n, i++) printf("%d ", q[i]);
+    for (int i = 0; i < n; i++) printf("%d ", q[i]);
+    puts("");
+}
+
+int main() {
+    init();
+    scanf("%d%d", &n, &m);
+    while (m--) {
+        int a, b;
+        scanf("%d%d", &a, &b);
+        add(a, b);
+    }
+    if (topsort()) print();
+    else puts("-1");
+    return 0;
 }
