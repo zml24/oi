@@ -38,8 +38,8 @@ void print() {
 }
 
 int main() {
-    init();
     scanf("%d%d", &n, &m);
+    init();
     while (m--) {
         int a, b;
         scanf("%d%d", &a, &b);

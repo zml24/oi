@@ -1,3 +1,11 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 100010, INF = 0x3f3f3f3f;
+
+int m;
+
 struct Node {
     int l, r;
     int key, val;
@@ -86,13 +94,29 @@ int get_key_by_rank(int &p, int rank) {
 int get_prev(int &p, int key) {
     if (!p) return -INF;
     if (tr[p].key >= key) return get_prev(tr[p].l, key); // < key
-    if (tr[p].key > key) return get_prev(tr[p].l, key); // <= key
+    if (tr[p].key > key) return get_prev(tr[p].l, key);  // <= key
     return max(tr[p].key, get_prev(tr[p].r, key));
 }
 
 int get_next(int &p, int key) {
     if (!p) return INF;
     if (tr[p].key <= key) return get_next(tr[p].r, key); // > key
-    if (tr[p].key < key) return get_next(tr[p].r, key); // >= key
+    if (tr[p].key < key) return get_next(tr[p].r, key);  // >= key
     return min(tr[p].key, get_next(tr[p].l, key));
+}
+
+int main() {
+    scanf("%d", &m);
+    build();
+    while (m--) {
+        int op, x;
+        scanf("%d%d", &op, &x);
+        if (op == 1) insert(root, x);
+        else if (op == 2) remove(root, x);
+        else if (op == 3) printf("%d\n", get_rank_by_key(root, x) - 1);
+        else if (op == 4) printf("%d\n", get_key_by_rank(root, x + 1));
+        else if (op == 5) printf("%d\n", get_prev(root, x));
+        else printf("%d\n", get_next(root, x));
+    }
+    return 0;
 }

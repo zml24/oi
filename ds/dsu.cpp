@@ -1,4 +1,10 @@
-int n;
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 10010;
+
+int n, m;
 int p[N], sz[N];
 
 void init() {
@@ -19,4 +25,19 @@ bool merge(int a, int b) {
         return true;
     }
     return false;
+}
+
+int main() {
+    scanf("%d%d", &n, &m);
+    init();
+    while (m--) {
+        int op, a, b;
+        scanf("%d%d%d", &op, &a, &b);
+        if (op == 1) merge(a, b);
+        else {
+            if (find(a) == find(b)) puts("Y");
+            else puts("N");
+        }
+    }
+    return 0;
 }

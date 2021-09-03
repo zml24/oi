@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int N = 510, M = 100010;
+const int N = 510, M = 50010;
 
 int n1, n2, m;
 int h[N], e[M], ne[M], idx;
@@ -43,8 +43,8 @@ int matching() {
 }
 
 int main() {
-    init();
     scanf("%d%d%d", &n1, &n2, &m);
+    init();
     while (m--) {
         int a, b;
         scanf("%d%d", &a, &b);

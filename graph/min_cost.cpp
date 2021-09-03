@@ -2,8 +2,7 @@
 
 using namespace std;
 
-const int N = 5010, M = 100010;
-const int INF = 0x3f3f3f3f;
+const int N = 5010, M = 100010, INF = 0x3f3f3f3f;
 
 int n, m, S, T;
 int h[N], e[M], f[M], w[M], ne[M], idx;
@@ -75,8 +74,8 @@ int max_cost() {
 }
 
 int main() {
-    init();
     scanf("%d%d%d%d", &n, &m, &S, &T);
+    init();
     while (m--) {
         int a, b, c, d;
         scanf("%d%d%d%d", &a, &b, &c, &d);

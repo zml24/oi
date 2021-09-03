@@ -1,3 +1,11 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 100010, INF = 0x3f3f3f3f;
+
+int m;
+
 struct Node {
     int l, r;
     int key, val;
@@ -32,7 +40,7 @@ void split(int p, int &x, int &y, int key) {
 
 void splitBysz(int p, int &x, int &y, int sz) {
     if (!p) x = y = 0;
-    else if (tr[tr[p].l].sz < sz) {
+    else if (tr[tr[p].l].sz <= sz) {
         x = p;
         splitBysz(tr[p].r, tr[p].r, y, sz - tr[tr[p].l].sz - 1);
         pushup(p);
@@ -97,7 +105,7 @@ int get_key_by_rank(int &p, int rank) {
 int get_prev(int &p, int key) {
     int x = 0, y = 0;
     split(p, x, y, key - 1); // < key
-    split(p, x, y, key); // <= key
+    // split(p, x, y, key);     // <= key
     int res = get_key_by_rank(x, tr[x].sz);
     merge(p, x, y);
     return res;
@@ -105,9 +113,25 @@ int get_prev(int &p, int key) {
 
 int get_next(int &p, int key) {
     int x = 0, y = 0;
-    split(p, x, y, key); // > key
-    split(p, x, y, key - 1); // >= key
+    split(p, x, y, key);     // > key
+    // split(p, x, y, key - 1); // >= key
     int res = get_key_by_rank(y, 1);
     merge(p, x, y);
     return res;
+}
+
+int main() {
+    scanf("%d", &m);
+    build();
+    while (m--) {
+        int op, x;
+        scanf("%d%d", &op, &x);
+        if (op == 1) insert(root, x);
+        else if (op == 2) remove(root, x);
+        else if (op == 3) printf("%d\n", get_rank_by_key(root, x) - 1);
+        else if (op == 4) printf("%d\n", get_key_by_rank(root, x + 1));
+        else if (op == 5) printf("%d\n", get_prev(root, x));
+        else printf("%d\n", get_next(root, x));
+    }
+    return 0;
 }

@@ -2,8 +2,7 @@
 
 using namespace std;
 
-const int N = 1010, M = 20010;
-const int INF = 0x3f3f3f3f;
+const int N = 1010, M = 20010, INF = 0x3f3f3f3f;
 
 int n, m, S, T;
 int h[N], e[M], f[M], ne[M], idx;
@@ -51,8 +50,8 @@ int EK() {
 }
 
 int main() {
-    init();
     scanf("%d%d%d%d", &n, &m, &S, &T);
+    init();
     while (m--) {
         int a, b, c;
         scanf("%d%d%d", &a, &b, &c);

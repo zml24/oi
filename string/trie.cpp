@@ -4,6 +4,7 @@ using namespace std;
 
 const int N = 1000010;
 
+int m;
 char str[N];
 int tr[N][26], cnt[N], idx;
 
@@ -34,9 +35,8 @@ int query() {
 }
 
 int main() {
-    int TT;
-    scanf("%d", &TT);
-    while (TT--) {
+    scanf("%d", &m);
+    while (m--) {
         char op[5];
         scanf("%s%s", op, str);
         if (op[0] == 'I') insert();

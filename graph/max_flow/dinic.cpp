@@ -2,8 +2,9 @@
 
 using namespace std;
 
-const int N = 10010, M = 200010;
-const int INF = 0x3f3f3f3f;
+typedef long long LL;
+
+const int N = 210, M = 10010, INF = 0x3f3f3f3f;
 
 int n, m, S, T;
 int h[N], e[M], f[M], ne[M], idx;
@@ -38,14 +39,14 @@ bool bfs() {
     return false;
 }
 
-int find(int u, int limit) {
+LL find(int u, int limit) {
     if (u == T) return limit;
-    int flow = 0;
+    LL flow = 0;
     for (int i = cur[u]; ~i && flow < limit; i = ne[i]) {
         cur[u] = i;
         int j = e[i];
         if (d[j] == d[u] + 1 && f[i]) {
-            int t = find(j, min(f[i], limit - flow));
+            int t = find(j, min((LL)f[i], limit - flow));
             if (!t) d[j] = -1;
             f[i] -= t, f[i ^ 1] += t, flow += t;
         }
@@ -53,8 +54,8 @@ int find(int u, int limit) {
     return flow;
 }
 
-int dinic() {
-    int res = 0, flow;
+LL dinic() {
+    LL res = 0, flow;
     while (bfs())
         while (flow = find(S, INF)) res += flow;
     return res;
@@ -66,13 +67,13 @@ void print() {
 }
 
 int main() {
-    init();
     scanf("%d%d%d%d", &n, &m, &S, &T);
+    init();
     while (m--) {
         int a, b, c;
         scanf("%d%d%d", &a, &b, &c);
         add(a, b, c);
     }
-    printf("%d\n", dinic());
+    printf("%lld\n", dinic());
     return 0;
 }

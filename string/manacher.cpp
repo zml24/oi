@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int N = 20000010;
+const int N = 22000010;
 
 int n;
 char a[N], b[N];
