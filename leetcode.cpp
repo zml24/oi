@@ -2,6 +2,8 @@
 
 #define x first
 #define y second
+#define all(x) (x).begin(), (x).end()
+#define sz(x) (int)x.size()
 
 using namespace std;
 
@@ -12,9 +14,8 @@ const int INF = 0x3f3f3f3f;
 const int mod = 1e9 + 7;
 const int dx[4] = {1, 0, -1, 0}, dy[4] = {0, 1, 0, -1};
 
-int main() {
-#ifdef LOCAL
-    freopen("std.in", "r", stdin);
-#endif
-    return 0;
-}
+static auto _ = []() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+};

@@ -1,3 +1,7 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
 int extend(queue<int> &q, unordered_map<int, int> &da, unordered_map<int, int> &db) {
     int mx = sz(q);
     for (int k = 0; k < mx; k++) {
@@ -26,4 +30,8 @@ int bfs() {
         if (~res) return res;
     }
     return -1;
+}
+
+int main() {
+    return 0;
 }

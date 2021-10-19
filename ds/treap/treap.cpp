@@ -93,15 +93,15 @@ int get_key_by_rank(int &p, int rank) {
 
 int get_prev(int &p, int key) {
     if (!p) return -INF;
-    if (tr[p].key >= key) return get_prev(tr[p].l, key); // < key
-    if (tr[p].key > key) return get_prev(tr[p].l, key);  // <= key
+    if (tr[p].key >= key) return get_prev(tr[p].l, key);
+    // if (tr[p].key > key) return get_prev(tr[p].l, key); // <= key
     return max(tr[p].key, get_prev(tr[p].r, key));
 }
 
 int get_next(int &p, int key) {
     if (!p) return INF;
-    if (tr[p].key <= key) return get_next(tr[p].r, key); // > key
-    if (tr[p].key < key) return get_next(tr[p].r, key);  // >= key
+    if (tr[p].key <= key) return get_next(tr[p].r, key);
+    // if (tr[p].key < key) return get_next(tr[p].r, key); // >= key
     return min(tr[p].key, get_next(tr[p].l, key));
 }
 

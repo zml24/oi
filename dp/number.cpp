@@ -1,10 +1,10 @@
 int f[N][10];
 
-void init() {
+void init(int n) {
     memset(f, 0, sizeof f);
     for (int i = 0; i <= 9; i++)
         if (i != 8) f[1][i] = 1;
-    for (int i = 2; i < n; i++)
+    for (int i = 2; i <= n; i++)
         for (int j = 0; j <= 9; j++) {
             if (j == 8) continue;
             for (int k = 0; k <= 9; k++) {

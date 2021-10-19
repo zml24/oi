@@ -13,8 +13,14 @@ int lowbit(int x) {
     return x & -x;
 }
 
+// O(n)建树
 void init() {
     memset(tr, 0, sizeof tr);
+    for (int i = 1; i <= n; i++) {
+        tr[i] += w[i];
+        int j = i + lowbit(i);
+        if (j <= n) tr[j] += tr[i];
+    }
 }
 
 void add(int x, int c) {
@@ -29,18 +35,13 @@ LL sum(int x) {
 
 int main() {
     scanf("%d%d", &n, &m);
-    init();
     for (int i = 1; i <= n; i++) scanf("%d", &w[i]);
-    for (int i = 1; i <= n; i++) add(i, w[i] - w[i - 1]);
+    init();
     while (m--) {
-        char op[2];
-        int l;
-        scanf("%s%d", op, &l);
-        if (*op == 'C') {
-            int r, d;
-            scanf("%d%d", &r, &d);
-            add(l, d), add(r + 1, -d);
-        } else printf("%lld\n", sum(l));
+        int op, a, b;
+        scanf("%d%d%d", &op, &a, &b);
+        if (op == 1) add(a, b);
+        else printf("%lld\n", sum(b) - sum(a - 1));
     }
     return 0;
 }
