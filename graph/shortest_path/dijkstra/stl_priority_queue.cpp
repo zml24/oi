@@ -1,3 +1,14 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define x first
+#define y second
+
+typedef pair<int, int> PII;
+
+const int N = 100010, M = 100010;
+
 int n, m, S, T;
 int h[N], e[M], w[M], ne[M], idx;
 int dist[N];

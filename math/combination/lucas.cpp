@@ -1,3 +1,11 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long LL;
+
+int mod;
+
 int qmi(int a, int k) {
     int res = 1;
     while (k) {
@@ -8,17 +16,28 @@ int qmi(int a, int k) {
     return res;
 }
 
-int c(int a, int b) {
-    if (b > a) return 0;
-    int res = 1;
+int C(int a, int b) {
+    if (a < b) return 0;
+    int down = 1, up = 1;
     for (int i = 1, j = a; i <= b; i++, j--) {
-        res = (LL)res * j % mod;
-        res = (LL)res * qmi(i, mod - 2) % mod;
+        down = (LL)down * i % mod;
+        up = (LL)up * j % mod;
     }
-    return res;
+    return (LL)up * qmi(down, mod - 2) % mod;
 }
 
 int lucas(LL a, LL b) {
-    if (a < mod && b < mod) return c(a, b);
-    return (LL)c(a % mod, b % mod) * lucas(a / mod, b / mod) % mod;
+    if (a < mod && b < mod) return C(a, b);
+    return (LL)C(a % mod, b % mod) * lucas(a / mod, b / mod) % mod;
+}
+
+int main() {
+    int TT;
+    scanf("%d", &TT);
+    while (TT--) {
+        LL a, b;
+        scanf("%lld%lld%d", &a, &b, &mod);
+        printf("%d\n", lucas(a, b));
+    }
+    return 0;
 }

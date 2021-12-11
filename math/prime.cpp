@@ -10,9 +10,13 @@ bool is_prime(int n) {
 }
 
 int main() {
-    int n;
-    scanf("%d", &n);
-    if (is_prime(n)) puts("Yes");
-    else puts("No");
+    int TT;
+    scanf("%d", &TT);
+    while (TT--) {
+        int n;
+        scanf("%d", &n);
+        if (is_prime(n)) puts("Yes");
+        else puts("No");
+    }
     return 0;
 }

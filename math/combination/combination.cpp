@@ -1,3 +1,7 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
 int primes[N], cnt;
 int sum[N];
 bool st[N];
@@ -34,7 +38,7 @@ vector<int> mul(vector<int> &A, int b)
     return C;
 }
 
-vector<int> get(int a, int b) {
+vector<int> C(int a, int b) {
     get_primes(a);
     for (int i = 0; i < cnt; i++) {
         int p = primes[i];
@@ -46,4 +50,8 @@ vector<int> get(int a, int b) {
         for (int j = 0; j < sum[i]; j++)
             res = mul(res, primes[i]);
     return res;
+}
+
+int main() {
+    return 0;
 }

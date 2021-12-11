@@ -50,6 +50,10 @@ int main() {
     scanf("%s", s + 1);
     init();
     get_sa();
+    get_height();
     for (int i = 1; i <= n; i++) printf("%d ", sa[i]);
+    puts("");
+    for (int i = 1; i <= n; i++) printf("%d ", height[i]);
+    puts("");
     return 0;
 }

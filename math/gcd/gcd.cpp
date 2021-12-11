@@ -13,8 +13,12 @@ LL lcm(int a, int b) {
 }
 
 int main() {
-    int a, b;
-    scanf("%d%d", &a, &b);
-    printf("%d %lld\n", gcd(a, b), lcm(a, b));
+    int TT;
+    scanf("%d", &TT);
+    while (TT--) {
+        int a, b;
+        scanf("%d%d", &a, &b);
+        printf("%d\n", gcd(a, b));
+    }
     return 0;
 }

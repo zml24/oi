@@ -1,3 +1,7 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
 int f[M];
 
 for (int i = 0; i < n; i++) {

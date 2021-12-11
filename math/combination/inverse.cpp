@@ -1,3 +1,11 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long LL;
+
+const int N = 100010, mod = 1e9 + 7;
+
 int fact[N], infact[N];
 
 int qmi(int a, int k) {
@@ -18,6 +26,18 @@ void init() {
     }
 }
 
-int get(int a, int b) {
+int C(int a, int b) {
     return (LL)fact[a] * infact[b] % mod * infact[a - b] % mod;
+}
+
+int main() {
+    init();
+    int TT;
+    scanf("%d", &TT);
+    while (TT--) {
+        int a, b;
+        scanf("%d%d", &a, &b);
+        printf("%d\n", C(a, b));
+    }
+    return 0;
 }
